@@ -1,0 +1,1051 @@
+[
+  {
+    "record_id": "AIS-3046",
+    "modality": "ais",
+    "sensor": "ais_rx_01",
+    "timestamp": "2026-08-22T03:41:00Z",
+    "region": "grid_a3",
+    "text": "AIS report: MMSI 412791108, vessel MV LARCH, position Grid A3, heading 275 degrees, speed 6.5 knots.",
+    "reliability": 0.82,
+    "confidence": 0.85,
+    "entities": [
+      "MV LARCH",
+      "412791108"
+    ],
+    "position": null,
+    "heading": 275.0,
+    "speed": 6.5,
+    "object_type": "vessel",
+    "classification": null,
+    "frequency_mhz": null,
+    "mmsi": "412791108",
+    "vessel_name": "MV LARCH",
+    "track_id": null,
+    "is_absence_report": false,
+    "payload": {},
+    "tags": [
+      "filler"
+    ]
+  },
+  {
+    "record_id": "AIS-3064",
+    "modality": "ais",
+    "sensor": "ais_rx_01",
+    "timestamp": "2026-08-22T03:41:00Z",
+    "region": "grid_a1",
+    "text": "AIS report: MMSI 412979181, vessel MT CEDAR POINT, position Grid A1, heading 146 degrees, speed 12.7 knots.",
+    "reliability": 0.82,
+    "confidence": 0.87,
+    "entities": [
+      "MT CEDAR POINT",
+      "412979181"
+    ],
+    "position": null,
+    "heading": 146.0,
+    "speed": 12.7,
+    "object_type": "vessel",
+    "classification": null,
+    "frequency_mhz": null,
+    "mmsi": "412979181",
+    "vessel_name": "MT CEDAR POINT",
+    "track_id": null,
+    "is_absence_report": false,
+    "payload": {},
+    "tags": [
+      "filler"
+    ]
+  },
+  {
+    "record_id": "AIS-1310",
+    "modality": "ais",
+    "sensor": "ais_rx_01",
+    "timestamp": "2026-08-22T04:00:00Z",
+    "region": "grid_b2",
+    "text": "AIS report: MMSI 412700111, vessel MV KESTREL, position Grid B2, heading 148 degrees, speed 17.5 knots, navigation status under way.",
+    "reliability": 0.82,
+    "confidence": 0.86,
+    "entities": [
+      "MV KESTREL",
+      "412700111"
+    ],
+    "position": [
+      12.18,
+      45.84
+    ],
+    "heading": 148.0,
+    "speed": 17.5,
+    "object_type": "vessel",
+    "classification": null,
+    "frequency_mhz": null,
+    "mmsi": "412700111",
+    "vessel_name": "MV KESTREL",
+    "track_id": null,
+    "is_absence_report": false,
+    "payload": {},
+    "tags": [
+      "case_e",
+      "identity"
+    ]
+  },
+  {
+    "record_id": "AIS-1301",
+    "modality": "ais",
+    "sensor": "ais_rx_01",
+    "timestamp": "2026-08-22T04:05:00Z",
+    "region": "sector_alpha",
+    "text": "No AIS transponder returns received from within Sector Alpha during the 0400-0420Z window.",
+    "reliability": 0.82,
+    "confidence": 0.8,
+    "entities": [],
+    "position": null,
+    "heading": null,
+    "speed": null,
+    "object_type": null,
+    "classification": null,
+    "frequency_mhz": null,
+    "mmsi": null,
+    "vessel_name": null,
+    "track_id": null,
+    "is_absence_report": true,
+    "payload": {},
+    "tags": [
+      "case_a",
+      "planted_absence"
+    ]
+  },
+  {
+    "record_id": "AIS-3072",
+    "modality": "ais",
+    "sensor": "ais_rx_01",
+    "timestamp": "2026-08-22T04:09:00Z",
+    "region": "grid_c2",
+    "text": "AIS report: MMSI 412739098, vessel MT CEDAR POINT, position Grid C2, heading 143 degrees, speed 12.7 knots.",
+    "reliability": 0.82,
+    "confidence": 0.82,
+    "entities": [
+      "MT CEDAR POINT",
+      "412739098"
+    ],
+    "position": null,
+    "heading": 143.0,
+    "speed": 12.7,
+    "object_type": "vessel",
+    "classification": null,
+    "frequency_mhz": null,
+    "mmsi": "412739098",
+    "vessel_name": "MT CEDAR POINT",
+    "track_id": null,
+    "is_absence_report": false,
+    "payload": {},
+    "tags": [
+      "filler"
+    ]
+  },
+  {
+    "record_id": "AIS-3045",
+    "modality": "ais",
+    "sensor": "ais_rx_01",
+    "timestamp": "2026-08-22T04:10:00Z",
+    "region": "grid_b3",
+    "text": "AIS report: MMSI 412148597, vessel MV SANDPIPER, position Grid B3, heading 11 degrees, speed 12.4 knots.",
+    "reliability": 0.82,
+    "confidence": 0.82,
+    "entities": [
+      "MV SANDPIPER",
+      "412148597"
+    ],
+    "position": null,
+    "heading": 11.0,
+    "speed": 12.4,
+    "object_type": "vessel",
+    "classification": null,
+    "frequency_mhz": null,
+    "mmsi": "412148597",
+    "vessel_name": "MV SANDPIPER",
+    "track_id": null,
+    "is_absence_report": false,
+    "payload": {},
+    "tags": [
+      "filler"
+    ]
+  },
+  {
+    "record_id": "AIS-3042",
+    "modality": "ais",
+    "sensor": "ais_rx_01",
+    "timestamp": "2026-08-22T04:17:00Z",
+    "region": "grid_c2",
+    "text": "AIS report: MMSI 412123304, vessel FV SEA SWALLOW, position Grid C2, heading 145 degrees, speed 4.3 knots.",
+    "reliability": 0.82,
+    "confidence": 0.78,
+    "entities": [
+      "FV SEA SWALLOW",
+      "412123304"
+    ],
+    "position": null,
+    "heading": 145.0,
+    "speed": 4.3,
+    "object_type": "vessel",
+    "classification": null,
+    "frequency_mhz": null,
+    "mmsi": "412123304",
+    "vessel_name": "FV SEA SWALLOW",
+    "track_id": null,
+    "is_absence_report": false,
+    "payload": {},
+    "tags": [
+      "filler"
+    ]
+  },
+  {
+    "record_id": "AIS-3054",
+    "modality": "ais",
+    "sensor": "ais_rx_01",
+    "timestamp": "2026-08-22T04:27:00Z",
+    "region": "grid_a3",
+    "text": "AIS report: MMSI 412531767, vessel FV SEA SWALLOW, position Grid A3, heading 215 degrees, speed 18.1 knots.",
+    "reliability": 0.82,
+    "confidence": 0.87,
+    "entities": [
+      "FV SEA SWALLOW",
+      "412531767"
+    ],
+    "position": null,
+    "heading": 215.0,
+    "speed": 18.1,
+    "object_type": "vessel",
+    "classification": null,
+    "frequency_mhz": null,
+    "mmsi": "412531767",
+    "vessel_name": "FV SEA SWALLOW",
+    "track_id": null,
+    "is_absence_report": false,
+    "payload": {},
+    "tags": [
+      "filler"
+    ]
+  },
+  {
+    "record_id": "AIS-3056",
+    "modality": "ais",
+    "sensor": "ais_rx_01",
+    "timestamp": "2026-08-22T04:30:00Z",
+    "region": "grid_b1",
+    "text": "AIS report: MMSI 412755778, vessel MV BASALT, position Grid B1, heading 183 degrees, speed 18.9 knots.",
+    "reliability": 0.82,
+    "confidence": 0.89,
+    "entities": [
+      "MV BASALT",
+      "412755778"
+    ],
+    "position": null,
+    "heading": 183.0,
+    "speed": 18.9,
+    "object_type": "vessel",
+    "classification": null,
+    "frequency_mhz": null,
+    "mmsi": "412755778",
+    "vessel_name": "MV BASALT",
+    "track_id": null,
+    "is_absence_report": false,
+    "payload": {},
+    "tags": [
+      "filler"
+    ]
+  },
+  {
+    "record_id": "AIS-3060",
+    "modality": "ais",
+    "sensor": "ais_rx_01",
+    "timestamp": "2026-08-22T04:30:00Z",
+    "region": "grid_b2",
+    "text": "AIS report: MMSI 412302261, vessel MT ORION TRADER, position Grid B2, heading 44 degrees, speed 17.6 knots.",
+    "reliability": 0.82,
+    "confidence": 0.84,
+    "entities": [
+      "MT ORION TRADER",
+      "412302261"
+    ],
+    "position": null,
+    "heading": 44.0,
+    "speed": 17.6,
+    "object_type": "vessel",
+    "classification": null,
+    "frequency_mhz": null,
+    "mmsi": "412302261",
+    "vessel_name": "MT ORION TRADER",
+    "track_id": null,
+    "is_absence_report": false,
+    "payload": {},
+    "tags": [
+      "filler"
+    ]
+  },
+  {
+    "record_id": "AIS-1311",
+    "modality": "ais",
+    "sensor": "ais_rx_01",
+    "timestamp": "2026-08-22T04:35:00Z",
+    "region": "grid_b3",
+    "text": "AIS report: MMSI 412700111, vessel MV KESTREL, position Grid B3, heading 145 degrees, speed 17.8 knots.",
+    "reliability": 0.82,
+    "confidence": 0.86,
+    "entities": [
+      "MV KESTREL",
+      "412700111"
+    ],
+    "position": [
+      12.24,
+      45.9
+    ],
+    "heading": 145.0,
+    "speed": 17.8,
+    "object_type": "vessel",
+    "classification": null,
+    "frequency_mhz": null,
+    "mmsi": "412700111",
+    "vessel_name": "MV KESTREL",
+    "track_id": null,
+    "is_absence_report": false,
+    "payload": {},
+    "tags": [
+      "case_e",
+      "identity"
+    ]
+  },
+  {
+    "record_id": "AIS-3053",
+    "modality": "ais",
+    "sensor": "ais_rx_01",
+    "timestamp": "2026-08-22T04:35:00Z",
+    "region": "grid_b3",
+    "text": "AIS report: MMSI 412946394, vessel MV SANDPIPER, position Grid B3, heading 205 degrees, speed 3.7 knots.",
+    "reliability": 0.82,
+    "confidence": 0.88,
+    "entities": [
+      "MV SANDPIPER",
+      "412946394"
+    ],
+    "position": null,
+    "heading": 205.0,
+    "speed": 3.7,
+    "object_type": "vessel",
+    "classification": null,
+    "frequency_mhz": null,
+    "mmsi": "412946394",
+    "vessel_name": "MV SANDPIPER",
+    "track_id": null,
+    "is_absence_report": false,
+    "payload": {},
+    "tags": [
+      "filler"
+    ]
+  },
+  {
+    "record_id": "AIS-3039",
+    "modality": "ais",
+    "sensor": "ais_rx_01",
+    "timestamp": "2026-08-22T04:38:00Z",
+    "region": "grid_b2",
+    "text": "AIS report: MMSI 412870209, vessel FV SEA SWALLOW, position Grid B2, heading 97 degrees, speed 8.7 knots.",
+    "reliability": 0.82,
+    "confidence": 0.82,
+    "entities": [
+      "FV SEA SWALLOW",
+      "412870209"
+    ],
+    "position": null,
+    "heading": 97.0,
+    "speed": 8.7,
+    "object_type": "vessel",
+    "classification": null,
+    "frequency_mhz": null,
+    "mmsi": "412870209",
+    "vessel_name": "FV SEA SWALLOW",
+    "track_id": null,
+    "is_absence_report": false,
+    "payload": {},
+    "tags": [
+      "filler"
+    ]
+  },
+  {
+    "record_id": "AIS-3067",
+    "modality": "ais",
+    "sensor": "ais_rx_01",
+    "timestamp": "2026-08-22T04:41:00Z",
+    "region": "grid_c1",
+    "text": "AIS report: MMSI 412200416, vessel MV TIDEWATER, position Grid C1, heading 72 degrees, speed 10.2 knots.",
+    "reliability": 0.82,
+    "confidence": 0.79,
+    "entities": [
+      "MV TIDEWATER",
+      "412200416"
+    ],
+    "position": null,
+    "heading": 72.0,
+    "speed": 10.2,
+    "object_type": "vessel",
+    "classification": null,
+    "frequency_mhz": null,
+    "mmsi": "412200416",
+    "vessel_name": "MV TIDEWATER",
+    "track_id": null,
+    "is_absence_report": false,
+    "payload": {},
+    "tags": [
+      "filler"
+    ]
+  },
+  {
+    "record_id": "AIS-3068",
+    "modality": "ais",
+    "sensor": "ais_rx_01",
+    "timestamp": "2026-08-22T04:43:00Z",
+    "region": "grid_c1",
+    "text": "AIS report: MMSI 412541012, vessel MV LARCH, position Grid C1, heading 135 degrees, speed 3.9 knots.",
+    "reliability": 0.82,
+    "confidence": 0.84,
+    "entities": [
+      "MV LARCH",
+      "412541012"
+    ],
+    "position": null,
+    "heading": 135.0,
+    "speed": 3.9,
+    "object_type": "vessel",
+    "classification": null,
+    "frequency_mhz": null,
+    "mmsi": "412541012",
+    "vessel_name": "MV LARCH",
+    "track_id": null,
+    "is_absence_report": false,
+    "payload": {},
+    "tags": [
+      "filler"
+    ]
+  },
+  {
+    "record_id": "AIS-1340",
+    "modality": "ais",
+    "sensor": "ais_rx_01",
+    "timestamp": "2026-08-22T04:50:00Z",
+    "region": "grid_c1",
+    "text": "AIS report: MMSI 412800444, vessel MV CORAL, position Grid C1, heading 015 degrees, speed 9.3 knots.",
+    "reliability": 0.82,
+    "confidence": 0.84,
+    "entities": [
+      "MV CORAL",
+      "412800444"
+    ],
+    "position": null,
+    "heading": 15.0,
+    "speed": 9.3,
+    "object_type": "vessel",
+    "classification": null,
+    "frequency_mhz": null,
+    "mmsi": "412800444",
+    "vessel_name": "MV CORAL",
+    "track_id": null,
+    "is_absence_report": false,
+    "payload": {},
+    "tags": [
+      "presence",
+      "charlie"
+    ]
+  },
+  {
+    "record_id": "AIS-3051",
+    "modality": "ais",
+    "sensor": "ais_rx_01",
+    "timestamp": "2026-08-22T04:50:00Z",
+    "region": "grid_a3",
+    "text": "AIS report: MMSI 412118000, vessel MV QUARTZ, position Grid A3, heading 3 degrees, speed 5.2 knots.",
+    "reliability": 0.82,
+    "confidence": 0.88,
+    "entities": [
+      "MV QUARTZ",
+      "412118000"
+    ],
+    "position": null,
+    "heading": 3.0,
+    "speed": 5.2,
+    "object_type": "vessel",
+    "classification": null,
+    "frequency_mhz": null,
+    "mmsi": "412118000",
+    "vessel_name": "MV QUARTZ",
+    "track_id": null,
+    "is_absence_report": false,
+    "payload": {},
+    "tags": [
+      "filler"
+    ]
+  },
+  {
+    "record_id": "AIS-3055",
+    "modality": "ais",
+    "sensor": "ais_rx_01",
+    "timestamp": "2026-08-22T04:50:00Z",
+    "region": "grid_b2",
+    "text": "AIS report: MMSI 412102809, vessel MV LARCH, position Grid B2, heading 120 degrees, speed 10.4 knots.",
+    "reliability": 0.82,
+    "confidence": 0.81,
+    "entities": [
+      "MV LARCH",
+      "412102809"
+    ],
+    "position": null,
+    "heading": 120.0,
+    "speed": 10.4,
+    "object_type": "vessel",
+    "classification": null,
+    "frequency_mhz": null,
+    "mmsi": "412102809",
+    "vessel_name": "MV LARCH",
+    "track_id": null,
+    "is_absence_report": false,
+    "payload": {},
+    "tags": [
+      "filler"
+    ]
+  },
+  {
+    "record_id": "AIS-3062",
+    "modality": "ais",
+    "sensor": "ais_rx_01",
+    "timestamp": "2026-08-22T04:58:00Z",
+    "region": "grid_a2",
+    "text": "AIS report: MMSI 412972805, vessel MV BASALT, position Grid A2, heading 296 degrees, speed 11.9 knots.",
+    "reliability": 0.82,
+    "confidence": 0.88,
+    "entities": [
+      "MV BASALT",
+      "412972805"
+    ],
+    "position": null,
+    "heading": 296.0,
+    "speed": 11.9,
+    "object_type": "vessel",
+    "classification": null,
+    "frequency_mhz": null,
+    "mmsi": "412972805",
+    "vessel_name": "MV BASALT",
+    "track_id": null,
+    "is_absence_report": false,
+    "payload": {},
+    "tags": [
+      "filler"
+    ]
+  },
+  {
+    "record_id": "AIS-3058",
+    "modality": "ais",
+    "sensor": "ais_rx_01",
+    "timestamp": "2026-08-22T05:03:00Z",
+    "region": "grid_a3",
+    "text": "AIS report: MMSI 412803497, vessel FV GANNET, position Grid A3, heading 164 degrees, speed 13.9 knots.",
+    "reliability": 0.82,
+    "confidence": 0.82,
+    "entities": [
+      "FV GANNET",
+      "412803497"
+    ],
+    "position": null,
+    "heading": 164.0,
+    "speed": 13.9,
+    "object_type": "vessel",
+    "classification": null,
+    "frequency_mhz": null,
+    "mmsi": "412803497",
+    "vessel_name": "FV GANNET",
+    "track_id": null,
+    "is_absence_report": false,
+    "payload": {},
+    "tags": [
+      "filler"
+    ]
+  },
+  {
+    "record_id": "AIS-3070",
+    "modality": "ais",
+    "sensor": "ais_rx_01",
+    "timestamp": "2026-08-22T05:04:00Z",
+    "region": "grid_b1",
+    "text": "AIS report: MMSI 412578071, vessel MV SANDPIPER, position Grid B1, heading 48 degrees, speed 15.5 knots.",
+    "reliability": 0.82,
+    "confidence": 0.89,
+    "entities": [
+      "MV SANDPIPER",
+      "412578071"
+    ],
+    "position": null,
+    "heading": 48.0,
+    "speed": 15.5,
+    "object_type": "vessel",
+    "classification": null,
+    "frequency_mhz": null,
+    "mmsi": "412578071",
+    "vessel_name": "MV SANDPIPER",
+    "track_id": null,
+    "is_absence_report": false,
+    "payload": {},
+    "tags": [
+      "filler"
+    ]
+  },
+  {
+    "record_id": "AIS-1320",
+    "modality": "ais",
+    "sensor": "ais_rx_01",
+    "timestamp": "2026-08-22T05:05:00Z",
+    "region": "grid_b1",
+    "text": "AIS report: MMSI 412500222, vessel FV NORTHERN STAR, position Grid B1, heading 088 degrees, speed 8.0 knots, fishing vessel.",
+    "reliability": 0.82,
+    "confidence": 0.85,
+    "entities": [
+      "FV NORTHERN STAR",
+      "412500222"
+    ],
+    "position": null,
+    "heading": 88.0,
+    "speed": 8.0,
+    "object_type": "vessel",
+    "classification": null,
+    "frequency_mhz": null,
+    "mmsi": "412500222",
+    "vessel_name": "FV NORTHERN STAR",
+    "track_id": null,
+    "is_absence_report": false,
+    "payload": {},
+    "tags": [
+      "presence",
+      "agreement"
+    ]
+  },
+  {
+    "record_id": "AIS-3047",
+    "modality": "ais",
+    "sensor": "ais_rx_01",
+    "timestamp": "2026-08-22T05:11:00Z",
+    "region": "grid_a3",
+    "text": "AIS report: MMSI 412369269, vessel MV SANDPIPER, position Grid A3, heading 112 degrees, speed 4.3 knots.",
+    "reliability": 0.82,
+    "confidence": 0.78,
+    "entities": [
+      "MV SANDPIPER",
+      "412369269"
+    ],
+    "position": null,
+    "heading": 112.0,
+    "speed": 4.3,
+    "object_type": "vessel",
+    "classification": null,
+    "frequency_mhz": null,
+    "mmsi": "412369269",
+    "vessel_name": "MV SANDPIPER",
+    "track_id": null,
+    "is_absence_report": false,
+    "payload": {},
+    "tags": [
+      "filler"
+    ]
+  },
+  {
+    "record_id": "AIS-3066",
+    "modality": "ais",
+    "sensor": "ais_rx_01",
+    "timestamp": "2026-08-22T05:13:00Z",
+    "region": "grid_b1",
+    "text": "AIS report: MMSI 412825722, vessel MV LARCH, position Grid B1, heading 191 degrees, speed 13.0 knots.",
+    "reliability": 0.82,
+    "confidence": 0.84,
+    "entities": [
+      "MV LARCH",
+      "412825722"
+    ],
+    "position": null,
+    "heading": 191.0,
+    "speed": 13.0,
+    "object_type": "vessel",
+    "classification": null,
+    "frequency_mhz": null,
+    "mmsi": "412825722",
+    "vessel_name": "MV LARCH",
+    "track_id": null,
+    "is_absence_report": false,
+    "payload": {},
+    "tags": [
+      "filler"
+    ]
+  },
+  {
+    "record_id": "AIS-1312",
+    "modality": "ais",
+    "sensor": "ais_rx_01",
+    "timestamp": "2026-08-22T05:20:00Z",
+    "region": "grid_b7",
+    "text": "AIS report: MMSI 412345678, vessel V-17, position Grid B7, heading 310 degrees, speed 11.4 knots, navigation status under way using engine.",
+    "reliability": 0.82,
+    "confidence": 0.83,
+    "entities": [
+      "V-17",
+      "412345678"
+    ],
+    "position": [
+      12.28,
+      45.71
+    ],
+    "heading": 310.0,
+    "speed": 11.4,
+    "object_type": "vessel",
+    "classification": null,
+    "frequency_mhz": null,
+    "mmsi": "412345678",
+    "vessel_name": "V-17",
+    "track_id": null,
+    "is_absence_report": false,
+    "payload": {},
+    "tags": [
+      "case_c",
+      "identity"
+    ]
+  },
+  {
+    "record_id": "AIS-3044",
+    "modality": "ais",
+    "sensor": "ais_rx_01",
+    "timestamp": "2026-08-22T05:22:00Z",
+    "region": "grid_c2",
+    "text": "AIS report: MMSI 412620003, vessel FV BLUE HERON, position Grid C2, heading 307 degrees, speed 6.2 knots.",
+    "reliability": 0.82,
+    "confidence": 0.87,
+    "entities": [
+      "FV BLUE HERON",
+      "412620003"
+    ],
+    "position": null,
+    "heading": 307.0,
+    "speed": 6.2,
+    "object_type": "vessel",
+    "classification": null,
+    "frequency_mhz": null,
+    "mmsi": "412620003",
+    "vessel_name": "FV BLUE HERON",
+    "track_id": null,
+    "is_absence_report": false,
+    "payload": {},
+    "tags": [
+      "filler"
+    ]
+  },
+  {
+    "record_id": "AIS-3040",
+    "modality": "ais",
+    "sensor": "ais_rx_01",
+    "timestamp": "2026-08-22T05:26:00Z",
+    "region": "grid_c1",
+    "text": "AIS report: MMSI 412695462, vessel MT CEDAR POINT, position Grid C1, heading 340 degrees, speed 16.9 knots.",
+    "reliability": 0.82,
+    "confidence": 0.79,
+    "entities": [
+      "MT CEDAR POINT",
+      "412695462"
+    ],
+    "position": null,
+    "heading": 340.0,
+    "speed": 16.9,
+    "object_type": "vessel",
+    "classification": null,
+    "frequency_mhz": null,
+    "mmsi": "412695462",
+    "vessel_name": "MT CEDAR POINT",
+    "track_id": null,
+    "is_absence_report": false,
+    "payload": {},
+    "tags": [
+      "filler"
+    ]
+  },
+  {
+    "record_id": "AIS-3071",
+    "modality": "ais",
+    "sensor": "ais_rx_01",
+    "timestamp": "2026-08-22T05:27:00Z",
+    "region": "grid_b3",
+    "text": "AIS report: MMSI 412336048, vessel MV SANDPIPER, position Grid B3, heading 68 degrees, speed 3.8 knots.",
+    "reliability": 0.82,
+    "confidence": 0.86,
+    "entities": [
+      "MV SANDPIPER",
+      "412336048"
+    ],
+    "position": null,
+    "heading": 68.0,
+    "speed": 3.8,
+    "object_type": "vessel",
+    "classification": null,
+    "frequency_mhz": null,
+    "mmsi": "412336048",
+    "vessel_name": "MV SANDPIPER",
+    "track_id": null,
+    "is_absence_report": false,
+    "payload": {},
+    "tags": [
+      "filler"
+    ]
+  },
+  {
+    "record_id": "AIS-3059",
+    "modality": "ais",
+    "sensor": "ais_rx_01",
+    "timestamp": "2026-08-22T05:32:00Z",
+    "region": "grid_b3",
+    "text": "AIS report: MMSI 412706583, vessel MT CEDAR POINT, position Grid B3, heading 358 degrees, speed 14.1 knots.",
+    "reliability": 0.82,
+    "confidence": 0.84,
+    "entities": [
+      "MT CEDAR POINT",
+      "412706583"
+    ],
+    "position": null,
+    "heading": 358.0,
+    "speed": 14.1,
+    "object_type": "vessel",
+    "classification": null,
+    "frequency_mhz": null,
+    "mmsi": "412706583",
+    "vessel_name": "MT CEDAR POINT",
+    "track_id": null,
+    "is_absence_report": false,
+    "payload": {},
+    "tags": [
+      "filler"
+    ]
+  },
+  {
+    "record_id": "AIS-1330",
+    "modality": "ais",
+    "sensor": "ais_rx_01",
+    "timestamp": "2026-08-22T05:36:00Z",
+    "region": "grid_a1",
+    "text": "AIS report: MMSI 412600333, vessel MV ALDER, position Grid A1, heading 221 degrees, speed 6.0 knots.",
+    "reliability": 0.82,
+    "confidence": 0.84,
+    "entities": [
+      "MV ALDER",
+      "412600333"
+    ],
+    "position": null,
+    "heading": 221.0,
+    "speed": 6.0,
+    "object_type": "vessel",
+    "classification": null,
+    "frequency_mhz": null,
+    "mmsi": "412600333",
+    "vessel_name": "MV ALDER",
+    "track_id": null,
+    "is_absence_report": false,
+    "payload": {},
+    "tags": [
+      "presence",
+      "agreement"
+    ]
+  },
+  {
+    "record_id": "AIS-3041",
+    "modality": "ais",
+    "sensor": "ais_rx_01",
+    "timestamp": "2026-08-22T05:37:00Z",
+    "region": "grid_a2",
+    "text": "AIS report: MMSI 412375445, vessel FV SEA SWALLOW, position Grid A2, heading 2 degrees, speed 18.9 knots.",
+    "reliability": 0.82,
+    "confidence": 0.82,
+    "entities": [
+      "FV SEA SWALLOW",
+      "412375445"
+    ],
+    "position": null,
+    "heading": 2.0,
+    "speed": 18.9,
+    "object_type": "vessel",
+    "classification": null,
+    "frequency_mhz": null,
+    "mmsi": "412375445",
+    "vessel_name": "FV SEA SWALLOW",
+    "track_id": null,
+    "is_absence_report": false,
+    "payload": {},
+    "tags": [
+      "filler"
+    ]
+  },
+  {
+    "record_id": "AIS-3050",
+    "modality": "ais",
+    "sensor": "ais_rx_01",
+    "timestamp": "2026-08-22T05:38:00Z",
+    "region": "grid_b2",
+    "text": "AIS report: MMSI 412866569, vessel MV LARCH, position Grid B2, heading 46 degrees, speed 8.6 knots.",
+    "reliability": 0.82,
+    "confidence": 0.78,
+    "entities": [
+      "MV LARCH",
+      "412866569"
+    ],
+    "position": null,
+    "heading": 46.0,
+    "speed": 8.6,
+    "object_type": "vessel",
+    "classification": null,
+    "frequency_mhz": null,
+    "mmsi": "412866569",
+    "vessel_name": "MV LARCH",
+    "track_id": null,
+    "is_absence_report": false,
+    "payload": {},
+    "tags": [
+      "filler"
+    ]
+  },
+  {
+    "record_id": "AIS-3049",
+    "modality": "ais",
+    "sensor": "ais_rx_01",
+    "timestamp": "2026-08-22T05:40:00Z",
+    "region": "grid_a1",
+    "text": "AIS report: MMSI 412766351, vessel MV TIDEWATER, position Grid A1, heading 354 degrees, speed 7.3 knots.",
+    "reliability": 0.82,
+    "confidence": 0.9,
+    "entities": [
+      "MV TIDEWATER",
+      "412766351"
+    ],
+    "position": null,
+    "heading": 354.0,
+    "speed": 7.3,
+    "object_type": "vessel",
+    "classification": null,
+    "frequency_mhz": null,
+    "mmsi": "412766351",
+    "vessel_name": "MV TIDEWATER",
+    "track_id": null,
+    "is_absence_report": false,
+    "payload": {},
+    "tags": [
+      "filler"
+    ]
+  },
+  {
+    "record_id": "AIS-3069",
+    "modality": "ais",
+    "sensor": "ais_rx_01",
+    "timestamp": "2026-08-22T05:42:00Z",
+    "region": "grid_b2",
+    "text": "AIS report: MMSI 412194442, vessel MV QUARTZ, position Grid B2, heading 225 degrees, speed 15.0 knots.",
+    "reliability": 0.82,
+    "confidence": 0.86,
+    "entities": [
+      "MV QUARTZ",
+      "412194442"
+    ],
+    "position": null,
+    "heading": 225.0,
+    "speed": 15.0,
+    "object_type": "vessel",
+    "classification": null,
+    "frequency_mhz": null,
+    "mmsi": "412194442",
+    "vessel_name": "MV QUARTZ",
+    "track_id": null,
+    "is_absence_report": false,
+    "payload": {},
+    "tags": [
+      "filler"
+    ]
+  },
+  {
+    "record_id": "AIS-3065",
+    "modality": "ais",
+    "sensor": "ais_rx_01",
+    "timestamp": "2026-08-22T05:43:00Z",
+    "region": "grid_b1",
+    "text": "AIS report: MMSI 412590479, vessel MT CEDAR POINT, position Grid B1, heading 77 degrees, speed 11.1 knots.",
+    "reliability": 0.82,
+    "confidence": 0.88,
+    "entities": [
+      "MT CEDAR POINT",
+      "412590479"
+    ],
+    "position": null,
+    "heading": 77.0,
+    "speed": 11.1,
+    "object_type": "vessel",
+    "classification": null,
+    "frequency_mhz": null,
+    "mmsi": "412590479",
+    "vessel_name": "MT CEDAR POINT",
+    "track_id": null,
+    "is_absence_report": false,
+    "payload": {},
+    "tags": [
+      "filler"
+    ]
+  },
+  {
+    "record_id": "AIS-3063",
+    "modality": "ais",
+    "sensor": "ais_rx_01",
+    "timestamp": "2026-08-22T05:54:00Z",
+    "region": "grid_a1",
+    "text": "AIS report: MMSI 412359146, vessel MV TIDEWATER, position Grid A1, heading 118 degrees, speed 15.2 knots.",
+    "reliability": 0.82,
+    "confidence": 0.9,
+    "entities": [
+      "MV TIDEWATER",
+      "412359146"
+    ],
+    "position": null,
+    "heading": 118.0,
+    "speed": 15.2,
+    "object_type": "vessel",
+    "classification": null,
+    "frequency_mhz": null,
+    "mmsi": "412359146",
+    "vessel_name": "MV TIDEWATER",
+    "track_id": null,
+    "is_absence_report": false,
+    "payload": {},
+    "tags": [
+      "filler"
+    ]
+  },
+  {
+    "record_id": "AIS-3052",
+    "modality": "ais",
+    "sensor": "ais_rx_01",
+    "timestamp": "2026-08-22T05:58:00Z",
+    "region": "grid_b1",
+    "text": "AIS report: MMSI 412198598, vessel FV GANNET, position Grid B1, heading 128 degrees, speed 2.1 knots.",
+    "reliability": 0.82,
+    "confidence": 0.81,
+    "entities": [
+      "FV GANNET",
+      "412198598"
+    ],
+    "position": null,
+    "heading": 128.0,
+    "speed": 2.1,
+    "object_type": "vessel",
+    "classification": null,
+    "frequency_mhz": null,
+    "mmsi": "412198598",
+    "vessel_name": "FV GANNET",
+    "track_id": null,
+    "is_absence_report": false,
+    "payload": {},
+    "tags": [
+      "filler"
+    ]
+  }
+]

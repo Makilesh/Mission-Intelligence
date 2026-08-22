@@ -1,0 +1,54 @@
+{
+  "dataset_version": "mission-synth-v1.0.0",
+  "records": 151,
+  "coverage_entries": 117,
+  "regions": 13,
+  "sensors": 10,
+  "mission_start": "2026-08-22T03:30:00+00:00",
+  "mission_end": "2026-08-22T06:00:00+00:00",
+  "mission_now": "2026-08-22T05:40:00+00:00",
+  "planted_cases": {
+    "case_a_true_absence": {
+      "region": "sector_alpha",
+      "window": [
+        "2026-08-22T04:00:00+00:00",
+        "2026-08-22T04:20:00+00:00"
+      ]
+    },
+    "case_b_blind_window": {
+      "region": "grid_b7",
+      "window": [
+        "2026-08-22T04:07:00+00:00",
+        "2026-08-22T04:11:00+00:00"
+      ]
+    },
+    "case_c_contradiction": {
+      "region": "grid_b7",
+      "time": "05:20"
+    },
+    "case_d_traps": [
+      "RADAR-090",
+      "TRAP-802",
+      "TRAP-805",
+      "MR-099",
+      "RF-610"
+    ],
+    "case_e_multihop": [
+      "RADAR-210",
+      "RADAR-212",
+      "RADAR-221",
+      "AIS-1310",
+      "MR-021"
+    ]
+  },
+  "modality_counts": {
+    "ais": 37,
+    "eo_ir": 15,
+    "imagery": 10,
+    "mission_report": 20,
+    "rf": 18,
+    "standing_order": 5,
+    "surface_radar": 41,
+    "terrain": 5
+  }
+}
