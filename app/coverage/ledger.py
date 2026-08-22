@@ -252,7 +252,7 @@ class CoverageLedger:
                 for i, s0 in enumerate(slot_starts):
                     mid = s0 + step / 2
                     if e.time_start <= mid < e.time_end:
-                        informed[grid][i] = True
+                        informed[grid][e.modality][i] = True
                         cur = weight[grid][e.modality][i]
                         weight[grid][e.modality][i] = max(cur, w)
 
@@ -269,8 +269,15 @@ class CoverageLedger:
 
         total_cells = len(grids) * n_slots
         covered_fraction = sum(sum(v) for v in eff.values()) / total_cells
-        no_info_cells = sum(1 for g in grids for i in range(n_slots) if not informed[g][i])
-        no_information_fraction = no_info_cells / total_cells
+        info_cells = len(grids) * len(sensing) * n_slots
+        no_info_cells = sum(
+            1
+            for g in grids
+            for m in sensing
+            for i in range(n_slots)
+            if not informed[g][m][i]
+        )
+        no_information_fraction = no_info_cells / info_cells
 
         # ---- per-modality reporting (raw, no adequacy weighting) ---------------------
         per_modality: list[ModalityCoverage] = []
