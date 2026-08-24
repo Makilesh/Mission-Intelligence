@@ -27,6 +27,7 @@ from app.models.schemas import (
     Contradiction,
     CoverageReport,
     Evidence,
+    QueryIntent,
     QueryPlan,
 )
 
@@ -162,6 +163,7 @@ def deterministic_answer(
     presence: list[Evidence],
     absence: list[Evidence],
     unobserved: list[Evidence],
+    association: str | None = None,
 ) -> str:
     """Template synthesis. Every sentence is derived from a structured fact."""
     region_label = (coverage.region if coverage else plan.region) or "the requested area"
@@ -192,10 +194,23 @@ def deterministic_answer(
         )
     elif state is AnswerState.PRESENCE:
         modalities = sorted({e.source.value.replace('_', ' ') for e in presence})
-        parts.append(
-            f"Yes - {len(presence)} observation(s) in {region_label} during {window}Z report "
-            f"contacts, corroborated across {', '.join(modalities)}. {_cite(presence)}"
-        )
+        if plan.intent is QueryIntent.ABSENCE_CHECK:
+            parts.append(
+                f"No - that conclusion is not supported. {len(presence)} observation(s) in "
+                f"{region_label} during {window}Z report contacts "
+                f"({', '.join(modalities)}). {_cite(presence)}"
+            )
+            if coverage and not coverage.absence_claim_supported:
+                parts.append(
+                    f"Independently of that, coverage was only {pct} "
+                    f"({coverage.absence_block_reason}), so an absence claim could not have "
+                    "been supported even if nothing had been detected."
+                )
+        else:
+            parts.append(
+                f"Yes - {len(presence)} observation(s) in {region_label} during {window}Z report "
+                f"contacts, corroborated across {', '.join(modalities)}. {_cite(presence)}"
+            )
         detail = presence[0]
         parts.append(f"Most relevant: {detail.claim} [{detail.evidence_id}]")
         parts.append(f"Observation coverage for the queried volume was {pct}.")
@@ -236,6 +251,9 @@ def deterministic_answer(
                 + ", ".join(m.value for m in coverage.missing_modalities)
                 + "."
             )
+
+    if association:
+        parts.append(association)
 
     if contradictions and state is not AnswerState.CONTRADICTION:
         top = contradictions[0]
@@ -287,11 +305,21 @@ def synthesise(
     presence: list[Evidence],
     absence: list[Evidence],
     unobserved: list[Evidence],
+    association: str | None = None,
 ) -> LLMResult:
     provider = SETTINGS.llm.provider
     allowed = {e.evidence_id for e in evidence}
     baseline = deterministic_answer(
-        plan, state, coverage, evidence, contradictions, confidence, presence, absence, unobserved
+        plan,
+        state,
+        coverage,
+        evidence,
+        contradictions,
+        confidence,
+        presence,
+        absence,
+        unobserved,
+        association,
     )
 
     if provider == "deterministic":
@@ -305,6 +333,10 @@ def synthesise(
         )
 
     context = build_context(plan, state, coverage, evidence, contradictions, confidence, gaps)
+    if association:
+        context += (
+            "\nDETERMINISTIC ASSOCIATION ANALYSIS (do not contradict):\n  " + association + "\n"
+        )
     try:
         text = (
             _call_anthropic(SYSTEM_PROMPT, context)

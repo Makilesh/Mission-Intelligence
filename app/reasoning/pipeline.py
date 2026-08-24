@@ -35,6 +35,7 @@ from app.models.schemas import (
 )
 from app.observability import Tracer
 from app.reasoning import llm
+from app.reasoning.association import assess
 from app.reasoning.decomposition import decompose
 from app.retrieval.corpus import Corpus, get_corpus
 from app.retrieval.hybrid import HybridRetriever, get_retriever
@@ -255,6 +256,35 @@ async def answer_question(
         )
         detail.update({"state": state.value, "confidence": breakdown.confidence, "reasons": reasons})
 
+    # ---- 6b. multi-hop association (only for association questions) --------------------
+    association_text: str | None = None
+    association_payload: dict[str, Any] | None = None
+    if plan.intent is QueryIntent.ASSOCIATION:
+        with tracer.stage("association_analysis") as detail:
+            assessment = assess(bundle, ledger, plan.comparison_targets)
+            association_text = assessment.narrative
+            association_payload = assessment.to_dict()
+            detail.update(association_payload)
+            if assessment.verdict in ("CANNOT_ASSOCIATE", "INSUFFICIENT_EVIDENCE"):
+                state = AnswerState.UNKNOWN
+                reasons.append(
+                    f"association verdict {assessment.verdict}: the two reports cannot be "
+                    "linked with the available evidence"
+                )
+                breakdown = calculate_confidence(
+                    state=state,
+                    coverage=coverage,
+                    bundle=bundle,
+                    contradictions=contradictions,
+                    contradiction_severity=severity,
+                )
+            else:
+                adjusted = max(
+                    0.02, min(0.99, breakdown.confidence + assessment.confidence_modifier)
+                )
+                breakdown = breakdown.model_copy(update={"confidence": round(adjusted, 4)})
+                reasons.append(f"association verdict {assessment.verdict}")
+
     # ---- 7. synthesis ------------------------------------------------------------------
     gaps = _gap_strings(coverage)
     shown: list[Evidence] = _select_for_display(bundle, state)
@@ -270,6 +300,7 @@ async def answer_question(
             presence=bundle.presence,
             absence=bundle.absence,
             unobserved=bundle.unobserved,
+            association=association_text,
         )
         detail.update(
             {
@@ -338,6 +369,7 @@ async def answer_question(
             "retrieval_latency_ms": trace.retrieval_latency_ms,
             "reasoning_latency_ms": trace.reasoning_latency_ms,
             "confidence_features": breakdown.explain(),
+            "association": association_payload,
         },
     )
     answer.operator_view = _operator_view(answer, coverage)
