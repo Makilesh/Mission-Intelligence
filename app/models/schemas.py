@@ -272,6 +272,9 @@ class QueryPlan(BaseModel):
     time_range: TimeRange | None = None
     preferred_modalities: list[Modality] = Field(default_factory=list)
     hard_modalities: list[Modality] = Field(default_factory=list)
+    #: True when the operator named the modalities explicitly, rather than the system
+    #: falling back to the default sensing set.
+    modalities_explicit: bool = False
     comparison_targets: list[str] = Field(default_factory=list)
     requested_relationship: str | None = None
     subqueries: list[SubQuery] = Field(default_factory=list)

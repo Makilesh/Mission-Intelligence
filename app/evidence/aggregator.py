@@ -34,10 +34,35 @@ def base_state(evidence: Evidence) -> EvidenceState:
     return evidence.state
 
 
+def matches_entities(evidence: Evidence, entities: list[str]) -> bool:
+    if not entities:
+        return True
+    haystack = " ".join(
+        [evidence.claim.lower()]
+        + [e.lower() for e in evidence.entities]
+        + [
+            str(evidence.attributes.get(k, "")).lower()
+            for k in ("track_id", "vessel_name", "mmsi")
+        ]
+    )
+    return any(e.lower() in haystack for e in entities)
+
+
 @dataclass
 class EvidenceBundle:
     evidence: list[Evidence] = field(default_factory=list)
     coverage: CoverageReport | None = None
+    #: When the operator names specific modalities or entities, a claim about *those*
+    #: may only be supported by evidence of that kind. Retrieval stays soft (spec 8);
+    #: the claim does not. Answering "yes, AIS contacts" on the strength of a radar track
+    #: would be a different kind of fabrication.
+    scope_modalities: list[Modality] = field(default_factory=list)
+    scope_entities: list[str] = field(default_factory=list)
+
+    def in_scope(self, evidence: Evidence) -> bool:
+        if self.scope_modalities and evidence.source not in self.scope_modalities:
+            return False
+        return matches_entities(evidence, self.scope_entities)
 
     # -------------------------------------------------------------------- selectors ----
     def by_state(self, *states: EvidenceState) -> list[Evidence]:
@@ -66,6 +91,7 @@ class EvidenceBundle:
             if base_state(e) is EvidenceState.PRESENCE
             and e.source not in (Modality.STANDING_ORDER, Modality.TERRAIN)
             and e.attributes.get("detection", False)
+            and self.in_scope(e)
         ]
 
     @property
@@ -177,7 +203,11 @@ def aggregate(
     ledger: CoverageLedger,
     coverage: CoverageReport,
 ) -> EvidenceBundle:
-    bundle = EvidenceBundle(coverage=coverage)
+    bundle = EvidenceBundle(
+        coverage=coverage,
+        scope_modalities=list(plan.preferred_modalities) if plan.modalities_explicit else [],
+        scope_entities=list(plan.entities),
+    )
     for doc in docs:
         record: SourceRecord | None = corpus.get(doc.record_id)
         if record is None:

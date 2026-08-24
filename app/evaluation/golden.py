@@ -224,8 +224,9 @@ _SPEC: list[dict] = [
                "so the answer must carry the degraded-coverage caveat."),
     dict(qid="G16", question="Were there any AIS contacts in Sector Alpha between 04:41 and 04:51?",
          category="partial_coverage", region="sector_alpha", window=((4, 41), (4, 51)),
-         expected_state=AnswerState.UNKNOWN, expected_coverage_band=(0.5, 0.95),
-         notes="AIS receiver reset: the AIS channel is blind even though radar is not."),
+         expected_state=AnswerState.UNKNOWN, expected_coverage_band=(0.0, 0.05),
+         notes="AIS receiver reset. The question names AIS, so the AIS channel alone decides "
+               "coverage - and it is blind, even though radar is not."),
     dict(qid="G17", question="Were there any RF emissions in Sector Alpha between 04:41 and 04:55?",
          category="partial_coverage", region="sector_alpha", window=((4, 41), (4, 55)),
          expected_state=AnswerState.UNKNOWN, expected_coverage_band=(0.0, 0.6),

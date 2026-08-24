@@ -31,7 +31,9 @@ WINDOW_TOLERANCE = {
     Modality.TERRAIN: timedelta(days=3650),
     Modality.IMAGERY: timedelta(minutes=5),
 }
-DEFAULT_TOLERANCE = timedelta(minutes=2)
+#: Sensor detections are instantaneous events - a radar return 2 minutes before the
+#: window is not evidence about the window. Narrative reports keep their slack above.
+DEFAULT_TOLERANCE = timedelta(seconds=0)
 
 STALE_RECENCY_THRESHOLD = 0.25
 LOW_CONFIDENCE_THRESHOLD = 0.45

@@ -44,7 +44,7 @@ class CoverageConfig(BaseModel):
     # An OBSERVED_ABSENCE claim needs at least this much coverage...
     absence_coverage_threshold: float = 0.85
     # ...and no atomic sub-region may be blind for more than this fraction of the window.
-    absence_max_blind_subregion_fraction: float = 0.50
+    absence_max_blind_subregion_fraction: float = 0.35
     # Sub-interval granularity (seconds) used when rasterising coverage.
     resolution_seconds: int = 30
 
