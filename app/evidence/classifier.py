@@ -63,6 +63,29 @@ def region_relevant(record: SourceRecord, region: str | None) -> bool:
     return world.region_matches(record.region, region) or world.region_matches(region, record.region)
 
 
+def is_detection(record: SourceRecord) -> bool:
+    """True only when the record asserts that *something was there*.
+
+    A watch summary saying "no radar was tasked" is a document about the sensor picture,
+    not a contact. Counting such documents as presence evidence would let narrative text
+    manufacture contacts.
+    """
+    if record.is_absence_report:
+        return False
+    if record.modality in (Modality.STANDING_ORDER, Modality.TERRAIN):
+        return False
+    return any(
+        [
+            record.track_id,
+            record.mmsi,
+            record.vessel_name,
+            record.object_type,
+            record.frequency_mhz is not None,
+            record.classification not in (None, "", "pending", "unclassified"),
+        ]
+    )
+
+
 def _claim(record: SourceRecord) -> str:
     text = record.text.strip()
     return text if len(text) <= 240 else text[:237] + "..."
@@ -166,6 +189,7 @@ def classify(
             "region_relevant": region_relevant(record, query_region),
             "quality": round(quality, 4),
             "effective_window": effective_window.label(),
+            "detection": is_detection(record),
         },
         notes=notes,
     )

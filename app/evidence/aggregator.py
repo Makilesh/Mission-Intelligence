@@ -65,6 +65,7 @@ class EvidenceBundle:
             for e in self.operational
             if base_state(e) is EvidenceState.PRESENCE
             and e.source not in (Modality.STANDING_ORDER, Modality.TERRAIN)
+            and e.attributes.get("detection", False)
         ]
 
     @property

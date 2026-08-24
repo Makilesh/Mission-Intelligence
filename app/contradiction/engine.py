@@ -31,6 +31,11 @@ from app.models.schemas import (
 )
 
 MAX_CLUSTER_GAP = timedelta(minutes=8)
+#: Two kinematic reports can only describe the same contact if they are near-simultaneous.
+#: Without this, two unrelated vessels transiting the same grid minutes apart would be
+#: reported as a heading contradiction - a false positive that would wreck the metric.
+KINEMATIC_PAIR_WINDOW = timedelta(minutes=3, seconds=30)
+IDENTITY_PAIR_WINDOW = timedelta(minutes=8)
 HEADING_TOLERANCE_DEG = 45.0
 SPEED_RELATIVE_TOLERANCE = 0.40
 SPEED_ABSOLUTE_TOLERANCE_KN = 3.0
@@ -107,6 +112,17 @@ def _claims(items: list[Evidence], value_fn) -> list[tuple[Evidence, object]]:  
     return out
 
 
+def _dedupe(items: list[tuple[Evidence, object]]) -> list[tuple[Evidence, object]]:
+    seen: set[str] = set()
+    out = []
+    for e, v in items:
+        if e.evidence_id in seen:
+            continue
+        seen.add(e.evidence_id)
+        out.append((e, v))
+    return out
+
+
 def _make(
     dimension: ContradictionDimension,
     items: list[tuple[Evidence, object]],
@@ -155,6 +171,27 @@ def _cross_source(items: list[tuple[Evidence, object]]) -> bool:
     return len({e.source for e, _ in items}) >= 2
 
 
+def _same_contact(a: Evidence, b: Evidence, window: timedelta) -> bool:
+    """Could these two reports be describing one physical contact?"""
+    if a.source is b.source:
+        return False  # two reports from one sensor are two contacts, not a disagreement
+    track_a, track_b = a.attributes.get("track_id"), b.attributes.get("track_id")
+    if track_a and track_b and track_a != track_b:
+        return False  # explicitly different tracks
+    return abs(_ts(a) - _ts(b)) <= window
+
+
+def _conflicting_pairs(
+    claims: list[tuple[Evidence, object]], window: timedelta
+) -> list[tuple[tuple[Evidence, object], tuple[Evidence, object]]]:
+    pairs = []
+    for i in range(len(claims)):
+        for j in range(i + 1, len(claims)):
+            if _same_contact(claims[i][0], claims[j][0], window):
+                pairs.append((claims[i], claims[j]))
+    return pairs
+
+
 def detect(evidence: list[Evidence]) -> list[Contradiction]:
     contradictions: list[Contradiction] = []
     index = 0
@@ -166,13 +203,19 @@ def detect(evidence: list[Evidence]) -> list[Contradiction]:
             lambda e: (e.attributes.get("vessel_name") or e.attributes.get("mmsi")) or None,
         )
         identity = [(e, v) for e, v in identity if str(v).strip().lower() not in NON_COMMITTAL]
-        distinct = {str(v).upper() for _e, v in identity}
-        if len(distinct) > 1 and _cross_source(identity):
+        conflicting = [
+            (a, b)
+            for a, b in _conflicting_pairs(identity, IDENTITY_PAIR_WINDOW)
+            if str(a[1]).upper() != str(b[1]).upper()
+        ]
+        if conflicting:
+            items = _dedupe([c for pair in conflicting for c in pair])
+            distinct = {str(v).upper() for _e, v in items}
             index += 1
             contradictions.append(
                 _make(
                     ContradictionDimension.IDENTITY,
-                    identity,
+                    items,
                     magnitude=1.0,
                     reason=(
                         "Sources disagree on the identity of the contact: "
@@ -184,58 +227,66 @@ def detect(evidence: list[Evidence]) -> list[Contradiction]:
 
         # ---------------- heading -----------------------------------------------------
         headings = _claims(group, lambda e: e.attributes.get("heading"))
-        if len(headings) > 1 and _cross_source(headings):
-            worst = 0.0
-            pair = None
-            for i in range(len(headings)):
-                for j in range(i + 1, len(headings)):
-                    d = _angular_difference(float(headings[i][1]), float(headings[j][1]))  # type: ignore[arg-type]
-                    if d > worst:
-                        worst, pair = d, (headings[i], headings[j])
-            if worst > HEADING_TOLERANCE_DEG and pair:
-                index += 1
-                contradictions.append(
-                    _make(
-                        ContradictionDimension.HEADING,
-                        list(pair),
-                        magnitude=min(1.0, worst / 180.0),
-                        reason=(
-                            f"Reported headings differ by {worst:.0f} degrees "
-                            f"({pair[0][1]} vs {pair[1][1]})"
-                        ),
-                        index=index,
-                    )
+        worst, pair = 0.0, None
+        for a, b in _conflicting_pairs(headings, KINEMATIC_PAIR_WINDOW):
+            d = _angular_difference(float(a[1]), float(b[1]))  # type: ignore[arg-type]
+            if d > worst:
+                worst, pair = d, (a, b)
+        if pair and worst > HEADING_TOLERANCE_DEG:
+            index += 1
+            contradictions.append(
+                _make(
+                    ContradictionDimension.HEADING,
+                    list(pair),
+                    magnitude=min(1.0, worst / 180.0),
+                    reason=(
+                        f"Reported headings differ by {worst:.0f} degrees "
+                        f"({pair[0][1]} vs {pair[1][1]})"
+                    ),
+                    index=index,
                 )
+            )
 
         # ---------------- speed -------------------------------------------------------
         speeds = _claims(group, lambda e: e.attributes.get("speed"))
-        if len(speeds) > 1 and _cross_source(speeds):
-            lo = min(speeds, key=lambda kv: float(kv[1]))  # type: ignore[arg-type]
-            hi = max(speeds, key=lambda kv: float(kv[1]))  # type: ignore[arg-type]
+        worst_rel, worst_pair, worst_diff = 0.0, None, 0.0
+        for a, b in _conflicting_pairs(speeds, KINEMATIC_PAIR_WINDOW):
+            lo, hi = sorted([a, b], key=lambda kv: float(kv[1]))  # type: ignore[arg-type]
             diff = float(hi[1]) - float(lo[1])  # type: ignore[arg-type]
             rel = diff / max(float(hi[1]), 1e-6)  # type: ignore[arg-type]
-            if diff >= SPEED_ABSOLUTE_TOLERANCE_KN and rel >= SPEED_RELATIVE_TOLERANCE:
-                index += 1
-                contradictions.append(
-                    _make(
-                        ContradictionDimension.SPEED,
-                        [lo, hi],
-                        magnitude=min(1.0, rel),
-                        reason=f"Reported speeds differ by {diff:.1f} knots ({lo[1]} vs {hi[1]})",
-                        index=index,
-                    )
+            if diff >= SPEED_ABSOLUTE_TOLERANCE_KN and rel >= SPEED_RELATIVE_TOLERANCE and rel > worst_rel:
+                worst_rel, worst_pair, worst_diff = rel, (lo, hi), diff
+        if worst_pair:
+            index += 1
+            contradictions.append(
+                _make(
+                    ContradictionDimension.SPEED,
+                    list(worst_pair),
+                    magnitude=min(1.0, worst_rel),
+                    reason=(
+                        f"Reported speeds differ by {worst_diff:.1f} knots "
+                        f"({worst_pair[0][1]} vs {worst_pair[1][1]})"
+                    ),
+                    index=index,
                 )
+            )
 
         # ---------------- classification ----------------------------------------------
         classes = _claims(group, lambda e: e.attributes.get("classification"))
         classes = [(e, v) for e, v in classes if str(v).strip().lower() not in NON_COMMITTAL]
-        distinct_classes = {str(v).lower() for _e, v in classes}
-        if len(distinct_classes) > 1 and _cross_source(classes):
+        conflicting_classes = [
+            (a, b)
+            for a, b in _conflicting_pairs(classes, IDENTITY_PAIR_WINDOW)
+            if str(a[1]).lower() != str(b[1]).lower()
+        ]
+        if conflicting_classes:
+            items = _dedupe([c for pair in conflicting_classes for c in pair])
+            distinct_classes = {str(v).lower() for _e, v in items}
             index += 1
             contradictions.append(
                 _make(
                     ContradictionDimension.CLASSIFICATION,
-                    classes,
+                    items,
                     magnitude=0.9,
                     reason=(
                         "Sources disagree on classification: " + " vs ".join(sorted(distinct_classes))
@@ -246,26 +297,22 @@ def detect(evidence: list[Evidence]) -> list[Contradiction]:
 
         # ---------------- position ----------------------------------------------------
         positions = _claims(group, lambda e: e.attributes.get("position"))
-        if len(positions) > 1 and _cross_source(positions):
-            worst = 0.0
-            pair = None
-            for i in range(len(positions)):
-                for j in range(i + 1, len(positions)):
-                    a, b = positions[i][1], positions[j][1]  # type: ignore[assignment]
-                    d = math.dist(tuple(a), tuple(b))  # type: ignore[arg-type]
-                    if d > worst:
-                        worst, pair = d, (positions[i], positions[j])
-            if worst > POSITION_TOLERANCE_DEG and pair:
-                index += 1
-                contradictions.append(
-                    _make(
-                        ContradictionDimension.POSITION,
-                        list(pair),
-                        magnitude=min(1.0, worst / (POSITION_TOLERANCE_DEG * 4)),
-                        reason=f"Reported positions differ by {worst:.3f} degrees",
-                        index=index,
-                    )
+        worst, pair = 0.0, None
+        for a, b in _conflicting_pairs(positions, KINEMATIC_PAIR_WINDOW):
+            d = math.dist(tuple(a[1]), tuple(b[1]))  # type: ignore[arg-type]
+            if d > worst:
+                worst, pair = d, (a, b)
+        if pair and worst > POSITION_TOLERANCE_DEG:
+            index += 1
+            contradictions.append(
+                _make(
+                    ContradictionDimension.POSITION,
+                    list(pair),
+                    magnitude=min(1.0, worst / (POSITION_TOLERANCE_DEG * 4)),
+                    reason=f"Reported positions differ by {worst:.3f} degrees",
+                    index=index,
                 )
+            )
 
     contradictions.sort(key=lambda c: -c.severity)
     return contradictions
