@@ -70,7 +70,9 @@ _IDENTITY_PATTERNS = ("what vessel", "which vessel", "who is", "identify", "iden
 # --------------------------------------------------------------------------------------
 _TIME_HHMM = re.compile(r"\b(\d{1,2}):(\d{2})\b")
 _TIME_MIL = re.compile(r"\b(\d{2})(\d{2})\s*z?\b", re.IGNORECASE)
-_RELATIVE = re.compile(r"last\s+(\d+)\s*(minute|minutes|min|hour|hours|hr)\b", re.IGNORECASE)
+_RELATIVE = re.compile(
+    r"last\s+(?:(\d+)\s*)?(minute|minutes|min|hour|hours|hr)\b", re.IGNORECASE
+)
 _ENTITY_TRACK = re.compile(r"\b([VT]-\d{1,3})\b", re.IGNORECASE)
 _ENTITY_MMSI = re.compile(r"\b(\d{9})\b")
 _ENTITY_DETECTION = re.compile(r"\b((?:EO|RADAR|AIS|RF|IMG|MR)-\d{2,4})\b", re.IGNORECASE)
@@ -101,7 +103,7 @@ def extract_time_range(question: str) -> tuple[TimeRange | None, str]:
 
     rel = _RELATIVE.search(q)
     if rel:
-        amount = int(rel.group(1))
+        amount = int(rel.group(1)) if rel.group(1) else 1
         unit = rel.group(2)
         delta = timedelta(hours=amount) if unit.startswith(("hour", "hr")) else timedelta(minutes=amount)
         return (
@@ -354,7 +356,7 @@ def decompose(question: str) -> QueryPlan:
     entities = extract_entities(question)
     preferred, hard = extract_modalities(question)
 
-    clocks = _parse_clock(question)
+    clocks = sorted(set(_parse_clock(question)))
     comparison_targets = [f"{hh:02d}:{mm:02d}" for hh, mm in clocks]
 
     notes = [f"intent={intent.value}", f"time: {time_note}"]
