@@ -171,25 +171,53 @@ def _cross_source(items: list[tuple[Evidence, object]]) -> bool:
     return len({e.source for e, _ in items}) >= 2
 
 
-def _same_contact(a: Evidence, b: Evidence, window: timedelta) -> bool:
+def _colocated(a: Evidence, b: Evidence) -> bool:
+    """Both reports carry a position and those positions agree to within tolerance.
+
+    Without this gate, two *different* vessels transiting the same grid at the same time -
+    a radar track of one and an AIS report of the other - would be reported as a heading
+    contradiction. Kinematic disagreement is only meaningful once co-location is
+    established.
+    """
+    pa, pb = a.attributes.get("position"), b.attributes.get("position")
+    if not pa or not pb:
+        return False
+    return math.dist(tuple(pa), tuple(pb)) <= POSITION_TOLERANCE_DEG
+
+
+def _same_contact(a: Evidence, b: Evidence, window: timedelta, require_colocation: bool) -> bool:
     """Could these two reports be describing one physical contact?"""
     if a.source is b.source:
         return False  # two reports from one sensor are two contacts, not a disagreement
     track_a, track_b = a.attributes.get("track_id"), b.attributes.get("track_id")
     if track_a and track_b and track_a != track_b:
         return False  # explicitly different tracks
-    return abs(_ts(a) - _ts(b)) <= window
+    if abs(_ts(a) - _ts(b)) > window:
+        return False
+    if require_colocation and not _colocated(a, b):
+        return False
+    return True
 
 
 def _conflicting_pairs(
-    claims: list[tuple[Evidence, object]], window: timedelta
+    claims: list[tuple[Evidence, object]],
+    window: timedelta,
+    require_colocation: bool = False,
 ) -> list[tuple[tuple[Evidence, object], tuple[Evidence, object]]]:
     pairs = []
     for i in range(len(claims)):
         for j in range(i + 1, len(claims)):
-            if _same_contact(claims[i][0], claims[j][0], window):
+            if _same_contact(claims[i][0], claims[j][0], window, require_colocation):
                 pairs.append((claims[i], claims[j]))
     return pairs
+
+
+def _same_entity(a: Evidence, b: Evidence) -> bool:
+    for key in ("track_id", "vessel_name", "mmsi"):
+        va, vb = a.attributes.get(key), b.attributes.get(key)
+        if va and vb and str(va).upper() == str(vb).upper():
+            return True
+    return False
 
 
 def detect(evidence: list[Evidence]) -> list[Contradiction]:
@@ -228,7 +256,7 @@ def detect(evidence: list[Evidence]) -> list[Contradiction]:
         # ---------------- heading -----------------------------------------------------
         headings = _claims(group, lambda e: e.attributes.get("heading"))
         worst, pair = 0.0, None
-        for a, b in _conflicting_pairs(headings, KINEMATIC_PAIR_WINDOW):
+        for a, b in _conflicting_pairs(headings, KINEMATIC_PAIR_WINDOW, require_colocation=True):
             d = _angular_difference(float(a[1]), float(b[1]))  # type: ignore[arg-type]
             if d > worst:
                 worst, pair = d, (a, b)
@@ -250,7 +278,7 @@ def detect(evidence: list[Evidence]) -> list[Contradiction]:
         # ---------------- speed -------------------------------------------------------
         speeds = _claims(group, lambda e: e.attributes.get("speed"))
         worst_rel, worst_pair, worst_diff = 0.0, None, 0.0
-        for a, b in _conflicting_pairs(speeds, KINEMATIC_PAIR_WINDOW):
+        for a, b in _conflicting_pairs(speeds, KINEMATIC_PAIR_WINDOW, require_colocation=True):
             lo, hi = sorted([a, b], key=lambda kv: float(kv[1]))  # type: ignore[arg-type]
             diff = float(hi[1]) - float(lo[1])  # type: ignore[arg-type]
             rel = diff / max(float(hi[1]), 1e-6)  # type: ignore[arg-type]
@@ -299,6 +327,9 @@ def detect(evidence: list[Evidence]) -> list[Contradiction]:
         positions = _claims(group, lambda e: e.attributes.get("position"))
         worst, pair = 0.0, None
         for a, b in _conflicting_pairs(positions, KINEMATIC_PAIR_WINDOW):
+            # Positions only contradict when the two reports claim the *same* entity.
+            if not _same_entity(a[0], b[0]):
+                continue
             d = math.dist(tuple(a[1]), tuple(b[1]))  # type: ignore[arg-type]
             if d > worst:
                 worst, pair = d, (a, b)

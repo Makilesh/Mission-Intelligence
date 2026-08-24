@@ -206,7 +206,10 @@ async def answer_question(
 
     # ---- 3. fusion / merge ------------------------------------------------------------
     with tracer.stage("fusion_rerank") as detail:
-        merged = HybridRetriever.merge(per_subquery, limit=max(12, len(plan.subqueries) * 4))
+        # The evidence pool fed to the deterministic layers is deliberately wider than what
+        # the operator is shown: contradiction detection and association reasoning need the
+        # long tail, while the operator view stays focused on the top evidence.
+        merged = HybridRetriever.merge(per_subquery, limit=max(20, len(plan.subqueries) * 8))
         detail.update({"merged_documents": len(merged), "rrf_k": retriever.build_info["rrf_k"]})
     tracer.trace.retrieved = merged
 
