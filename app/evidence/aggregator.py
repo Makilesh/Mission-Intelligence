@@ -77,7 +77,14 @@ class EvidenceBundle:
 
     @property
     def unobserved(self) -> list[Evidence]:
-        return [e for e in self.evidence if base_state(e) is EvidenceState.UNOBSERVED]
+        # Region relevance is enforced here too: a negative report from a *different*
+        # region says nothing about the queried one, however similar its wording.
+        return [
+            e
+            for e in self.evidence
+            if base_state(e) is EvidenceState.UNOBSERVED
+            and e.attributes.get("region_relevant", True)
+        ]
 
     @property
     def stale(self) -> list[Evidence]:
