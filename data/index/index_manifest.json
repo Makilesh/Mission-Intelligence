@@ -1,0 +1,13 @@
+{
+  "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+  "embedding_dim": 384,
+  "dense_backend": "faiss.IndexFlatIP",
+  "sparse_backend": "rank_bm25.BM25Okapi",
+  "documents": 151,
+  "rrf_k": 60,
+  "top_k_dense": 25,
+  "top_k_sparse": 25,
+  "rerank": true,
+  "built_at": "2026-08-24T18:04:31Z",
+  "dataset_version": "mission-synth-v1.0.0"
+}
