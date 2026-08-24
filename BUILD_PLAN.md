@@ -52,6 +52,9 @@ After every phase: run tests → record metrics → append to `DECISIONS_LOG.md`
 - **Absence gate**: an `OBSERVED_ABSENCE` claim requires (a) covered_fraction >= 0.85 AND
   (b) no atomic sub-region blind for >= 50% of the queried window. Otherwise -> `UNKNOWN`.
   This is what makes Demo 1 and Demo 2 differ even though both target Sector Alpha.
+  *(Revised during Phase 10 to 35%: at 50% a point-in-time question at 04:09, widened to
+  +/-5 min, could still claim an observed absence with grid_b7 dark for 40% of it. See
+  D2.5 in DECISIONS_LOG.md.)*
 - **Coverage status weights**: OBSERVED 1.0, PARTIALLY_OBSERVED 0.5, DEGRADED 0.4,
   NOT_OBSERVED 0.0, UNKNOWN 0.0. `NOT_OBSERVED` (asserted blind) is distinct from `UNKNOWN`
   (no ledger entry at all) — the ledger must be able to say "I have no idea".

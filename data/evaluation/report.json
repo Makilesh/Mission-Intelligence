@@ -1,6 +1,6 @@
 {
   "environment": {
-    "generated_at": "2026-08-24T18:55:24.002434+00:00",
+    "generated_at": "2026-08-24T18:59:43.627233+00:00",
     "dataset_version": "mission-synth-v1.0.0",
     "query_set_version": "golden-v1.0.0",
     "documents": 144,
@@ -72,7 +72,7 @@
       "mrr": 0.7037,
       "mrr_flat_baseline": 0.6747,
       "trap_rate@10": 0.5,
-      "latency_seconds": 3.4
+      "latency_seconds": 3.49
     },
     "per_question": [
       {
@@ -2043,9 +2043,9 @@
       "trap_citation_rate": 0.0,
       "gap_reporting_rate": 1.0,
       "mean_evidence_coverage": 0.7847,
-      "mean_latency_ms": 45.2,
-      "p95_latency_ms": 55.6,
-      "wall_seconds": 2.27,
+      "mean_latency_ms": 45.4,
+      "p95_latency_ms": 57.0,
+      "wall_seconds": 2.29,
       "state_accuracy_by_category": {
         "blind_window": 1.0,
         "contradiction": 1.0,
@@ -2082,7 +2082,7 @@
         "gap_mentioned": true,
         "gap_required": true,
         "ungrounded_citations": [],
-        "latency_ms": 57.32
+        "latency_ms": 58.34
       },
       {
         "qid": "G02",
@@ -2106,7 +2106,7 @@
         "gap_mentioned": false,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 43.04
+        "latency_ms": 45.02
       },
       {
         "qid": "G03",
@@ -2130,7 +2130,7 @@
         "gap_mentioned": false,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 42.56
+        "latency_ms": 44.71
       },
       {
         "qid": "G04",
@@ -2154,7 +2154,7 @@
         "gap_mentioned": false,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 45.39
+        "latency_ms": 41.19
       },
       {
         "qid": "G05",
@@ -2178,7 +2178,7 @@
         "gap_mentioned": false,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 37.61
+        "latency_ms": 39.53
       },
       {
         "qid": "G06",
@@ -2202,7 +2202,7 @@
         "gap_mentioned": false,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 36.32
+        "latency_ms": 39.63
       },
       {
         "qid": "G07",
@@ -2211,7 +2211,7 @@
         "expected_state": "UNKNOWN",
         "actual_state": "UNKNOWN",
         "state_correct": true,
-        "confidence": 0.45,
+        "confidence": 0.3937,
         "coverage_fraction": 0.75,
         "coverage_status": "PARTIALLY_OBSERVED",
         "coverage_in_band": true,
@@ -2226,7 +2226,7 @@
         "gap_mentioned": true,
         "gap_required": true,
         "ungrounded_citations": [],
-        "latency_ms": 41.28
+        "latency_ms": 34.4
       },
       {
         "qid": "G08",
@@ -2235,7 +2235,7 @@
         "expected_state": "UNKNOWN",
         "actual_state": "UNKNOWN",
         "state_correct": true,
-        "confidence": 0.45,
+        "confidence": 0.225,
         "coverage_fraction": 0.0,
         "coverage_status": "NOT_OBSERVED",
         "coverage_in_band": true,
@@ -2250,7 +2250,7 @@
         "gap_mentioned": true,
         "gap_required": true,
         "ungrounded_citations": [],
-        "latency_ms": 38.29
+        "latency_ms": 34.59
       },
       {
         "qid": "G09",
@@ -2259,7 +2259,7 @@
         "expected_state": "UNKNOWN",
         "actual_state": "UNKNOWN",
         "state_correct": true,
-        "confidence": 0.45,
+        "confidence": 0.36,
         "coverage_fraction": 0.6,
         "coverage_status": "PARTIALLY_OBSERVED",
         "coverage_in_band": true,
@@ -2274,7 +2274,7 @@
         "gap_mentioned": true,
         "gap_required": true,
         "ungrounded_citations": [],
-        "latency_ms": 42.18
+        "latency_ms": 34.47
       },
       {
         "qid": "G10",
@@ -2283,7 +2283,7 @@
         "expected_state": "UNKNOWN",
         "actual_state": "UNKNOWN",
         "state_correct": true,
-        "confidence": 0.45,
+        "confidence": 0.225,
         "coverage_fraction": 0.0,
         "coverage_status": "NOT_OBSERVED",
         "coverage_in_band": true,
@@ -2298,7 +2298,7 @@
         "gap_mentioned": true,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 48.66
+        "latency_ms": 40.11
       },
       {
         "qid": "G11",
@@ -2307,7 +2307,7 @@
         "expected_state": "UNKNOWN",
         "actual_state": "UNKNOWN",
         "state_correct": true,
-        "confidence": 0.45,
+        "confidence": 0.4219,
         "coverage_fraction": 0.875,
         "coverage_status": "PARTIALLY_OBSERVED",
         "coverage_in_band": true,
@@ -2322,7 +2322,7 @@
         "gap_mentioned": true,
         "gap_required": true,
         "ungrounded_citations": [],
-        "latency_ms": 48.36
+        "latency_ms": 43.76
       },
       {
         "qid": "G12",
@@ -2346,7 +2346,7 @@
         "gap_mentioned": true,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 42.94
+        "latency_ms": 44.23
       },
       {
         "qid": "G13",
@@ -2355,7 +2355,7 @@
         "expected_state": "UNKNOWN",
         "actual_state": "UNKNOWN",
         "state_correct": true,
-        "confidence": 0.45,
+        "confidence": 0.225,
         "coverage_fraction": 0.0,
         "coverage_status": "NOT_OBSERVED",
         "coverage_in_band": true,
@@ -2370,7 +2370,7 @@
         "gap_mentioned": true,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 52.17
+        "latency_ms": 48.33
       },
       {
         "qid": "G14",
@@ -2379,7 +2379,7 @@
         "expected_state": "UNKNOWN",
         "actual_state": "UNKNOWN",
         "state_correct": true,
-        "confidence": 0.45,
+        "confidence": 0.3038,
         "coverage_fraction": 0.35,
         "coverage_status": "PARTIALLY_OBSERVED",
         "coverage_in_band": true,
@@ -2394,7 +2394,7 @@
         "gap_mentioned": true,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 49.22
+        "latency_ms": 38.57
       },
       {
         "qid": "G15",
@@ -2418,7 +2418,7 @@
         "gap_mentioned": true,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 43.68
+        "latency_ms": 43.17
       },
       {
         "qid": "G16",
@@ -2427,7 +2427,7 @@
         "expected_state": "UNKNOWN",
         "actual_state": "UNKNOWN",
         "state_correct": true,
-        "confidence": 0.4051,
+        "confidence": 0.2026,
         "coverage_fraction": 0.0,
         "coverage_status": "NOT_OBSERVED",
         "coverage_in_band": true,
@@ -2442,7 +2442,7 @@
         "gap_mentioned": true,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 45.1
+        "latency_ms": 46.39
       },
       {
         "qid": "G17",
@@ -2451,7 +2451,7 @@
         "expected_state": "UNKNOWN",
         "actual_state": "UNKNOWN",
         "state_correct": true,
-        "confidence": 0.4146,
+        "confidence": 0.2073,
         "coverage_fraction": 0.0,
         "coverage_status": "NOT_OBSERVED",
         "coverage_in_band": true,
@@ -2466,7 +2466,7 @@
         "gap_mentioned": true,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 42.23
+        "latency_ms": 40.9
       },
       {
         "qid": "G18",
@@ -2490,7 +2490,7 @@
         "gap_mentioned": true,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 44.19
+        "latency_ms": 41.52
       },
       {
         "qid": "G19",
@@ -2514,7 +2514,7 @@
         "gap_mentioned": false,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 36.3
+        "latency_ms": 42.45
       },
       {
         "qid": "G20",
@@ -2538,7 +2538,7 @@
         "gap_mentioned": false,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 40.13
+        "latency_ms": 39.1
       },
       {
         "qid": "G21",
@@ -2562,7 +2562,7 @@
         "gap_mentioned": false,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 41.33
+        "latency_ms": 39.56
       },
       {
         "qid": "G22",
@@ -2586,7 +2586,7 @@
         "gap_mentioned": false,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 45.96
+        "latency_ms": 39.67
       },
       {
         "qid": "G23",
@@ -2610,7 +2610,7 @@
         "gap_mentioned": true,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 42.12
+        "latency_ms": 41.99
       },
       {
         "qid": "G24",
@@ -2634,7 +2634,7 @@
         "gap_mentioned": true,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 86.92
+        "latency_ms": 87.77
       },
       {
         "qid": "G25",
@@ -2658,7 +2658,7 @@
         "gap_mentioned": true,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 47.27
+        "latency_ms": 56.67
       },
       {
         "qid": "G26",
@@ -2682,7 +2682,7 @@
         "gap_mentioned": true,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 44.17
+        "latency_ms": 44.13
       },
       {
         "qid": "G27",
@@ -2691,7 +2691,7 @@
         "expected_state": "UNKNOWN",
         "actual_state": "UNKNOWN",
         "state_correct": true,
-        "confidence": 0.4487,
+        "confidence": 0.2244,
         "coverage_fraction": 0.0,
         "coverage_status": "NOT_OBSERVED",
         "coverage_in_band": true,
@@ -2706,7 +2706,7 @@
         "gap_mentioned": true,
         "gap_required": true,
         "ungrounded_citations": [],
-        "latency_ms": 44.15
+        "latency_ms": 46.95
       },
       {
         "qid": "G28",
@@ -2730,7 +2730,7 @@
         "gap_mentioned": true,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 41.34
+        "latency_ms": 40.21
       },
       {
         "qid": "G29",
@@ -2754,7 +2754,7 @@
         "gap_mentioned": true,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 42.18
+        "latency_ms": 41.89
       },
       {
         "qid": "G30",
@@ -2778,7 +2778,7 @@
         "gap_mentioned": true,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 40.45
+        "latency_ms": 42.33
       },
       {
         "qid": "G31",
@@ -2804,7 +2804,7 @@
         "gap_mentioned": true,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 61.08
+        "latency_ms": 59.03
       },
       {
         "qid": "G32",
@@ -2828,7 +2828,7 @@
         "gap_mentioned": true,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 40.67
+        "latency_ms": 47.89
       },
       {
         "qid": "G33",
@@ -2852,7 +2852,7 @@
         "gap_mentioned": true,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 45.72
+        "latency_ms": 47.14
       },
       {
         "qid": "G34",
@@ -2876,7 +2876,7 @@
         "gap_mentioned": true,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 55.58
+        "latency_ms": 53.67
       },
       {
         "qid": "G35",
@@ -2900,7 +2900,7 @@
         "gap_mentioned": true,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 48.2
+        "latency_ms": 51.79
       },
       {
         "qid": "G36",
@@ -2924,7 +2924,7 @@
         "gap_mentioned": true,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 40.33
+        "latency_ms": 44.59
       },
       {
         "qid": "G37",
@@ -2933,7 +2933,7 @@
         "expected_state": "UNKNOWN",
         "actual_state": "UNKNOWN",
         "state_correct": true,
-        "confidence": 0.3727,
+        "confidence": 0.1863,
         "coverage_fraction": 0.0,
         "coverage_status": "UNKNOWN",
         "coverage_in_band": true,
@@ -2948,7 +2948,7 @@
         "gap_mentioned": true,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 45.88
+        "latency_ms": 44.23
       },
       {
         "qid": "G38",
@@ -2972,7 +2972,7 @@
         "gap_mentioned": true,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 43.96
+        "latency_ms": 40.24
       },
       {
         "qid": "G39",
@@ -2981,7 +2981,7 @@
         "expected_state": "UNKNOWN",
         "actual_state": "UNKNOWN",
         "state_correct": true,
-        "confidence": 0.2725,
+        "confidence": 0.1976,
         "coverage_fraction": 0.45,
         "coverage_status": "PARTIALLY_OBSERVED",
         "coverage_in_band": true,
@@ -2998,7 +2998,7 @@
         "gap_mentioned": false,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 43.29
+        "latency_ms": 43.5
       },
       {
         "qid": "G40",
@@ -3007,7 +3007,7 @@
         "expected_state": "UNKNOWN",
         "actual_state": "UNKNOWN",
         "state_correct": true,
-        "confidence": 0.45,
+        "confidence": 0.4275,
         "coverage_fraction": 0.9,
         "coverage_status": "PARTIALLY_OBSERVED",
         "coverage_in_band": true,
@@ -3022,7 +3022,7 @@
         "gap_mentioned": true,
         "gap_required": true,
         "ungrounded_citations": [],
-        "latency_ms": 42.43
+        "latency_ms": 57.04
       },
       {
         "qid": "G41",
@@ -3031,7 +3031,7 @@
         "expected_state": "UNKNOWN",
         "actual_state": "UNKNOWN",
         "state_correct": true,
-        "confidence": 0.45,
+        "confidence": 0.225,
         "coverage_fraction": 0.0,
         "coverage_status": "UNKNOWN",
         "coverage_in_band": true,
@@ -3046,7 +3046,7 @@
         "gap_mentioned": true,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 43.86
+        "latency_ms": 42.66
       },
       {
         "qid": "G42",
@@ -3055,7 +3055,7 @@
         "expected_state": "UNKNOWN",
         "actual_state": "UNKNOWN",
         "state_correct": true,
-        "confidence": 0.45,
+        "confidence": 0.36,
         "coverage_fraction": 0.6,
         "coverage_status": "PARTIALLY_OBSERVED",
         "coverage_in_band": true,
@@ -3070,7 +3070,7 @@
         "gap_mentioned": true,
         "gap_required": true,
         "ungrounded_citations": [],
-        "latency_ms": 43.19
+        "latency_ms": 54.29
       },
       {
         "qid": "G43",
@@ -3079,7 +3079,7 @@
         "expected_state": "UNKNOWN",
         "actual_state": "UNKNOWN",
         "state_correct": true,
-        "confidence": 0.4476,
+        "confidence": 0.2238,
         "coverage_fraction": 0.0,
         "coverage_status": "UNKNOWN",
         "coverage_in_band": true,
@@ -3094,7 +3094,7 @@
         "gap_mentioned": true,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 46.82
+        "latency_ms": 47.89
       },
       {
         "qid": "G44",
@@ -3118,7 +3118,7 @@
         "gap_mentioned": true,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 46.34
+        "latency_ms": 46.86
       },
       {
         "qid": "G45",
@@ -3127,7 +3127,7 @@
         "expected_state": "UNKNOWN",
         "actual_state": "UNKNOWN",
         "state_correct": true,
-        "confidence": 0.3803,
+        "confidence": 0.1901,
         "coverage_fraction": 0.0,
         "coverage_status": "UNKNOWN",
         "coverage_in_band": true,
@@ -3142,7 +3142,7 @@
         "gap_mentioned": true,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 42.19
+        "latency_ms": 41.95
       },
       {
         "qid": "G46",
@@ -3151,7 +3151,7 @@
         "expected_state": "UNKNOWN",
         "actual_state": "UNKNOWN",
         "state_correct": true,
-        "confidence": 0.4183,
+        "confidence": 0.2092,
         "coverage_fraction": 0.0,
         "coverage_status": "NOT_OBSERVED",
         "coverage_in_band": true,
@@ -3166,7 +3166,7 @@
         "gap_mentioned": true,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 43.18
+        "latency_ms": 44.93
       },
       {
         "qid": "G47",
@@ -3190,7 +3190,7 @@
         "gap_mentioned": true,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 43.34
+        "latency_ms": 47.29
       },
       {
         "qid": "G48",
@@ -3214,7 +3214,7 @@
         "gap_mentioned": true,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 43.77
+        "latency_ms": 43.75
       },
       {
         "qid": "G49",
@@ -3238,7 +3238,7 @@
         "gap_mentioned": true,
         "gap_required": true,
         "ungrounded_citations": [],
-        "latency_ms": 42.78
+        "latency_ms": 45.24
       },
       {
         "qid": "G50",
@@ -3247,7 +3247,7 @@
         "expected_state": "UNKNOWN",
         "actual_state": "UNKNOWN",
         "state_correct": true,
-        "confidence": 0.45,
+        "confidence": 0.3937,
         "coverage_fraction": 0.75,
         "coverage_status": "PARTIALLY_OBSERVED",
         "coverage_in_band": true,
@@ -3262,14 +3262,14 @@
         "gap_mentioned": true,
         "gap_required": true,
         "ungrounded_citations": [],
-        "latency_ms": 44.37
+        "latency_ms": 46.48
       }
     ]
   },
   "calibration": {
     "summary": {
-      "pearson_confidence_vs_coverage": 0.656,
-      "spearman_confidence_vs_coverage": 0.6116,
+      "pearson_confidence_vs_coverage": 0.6816,
+      "spearman_confidence_vs_coverage": 0.7831,
       "monotonicity_violations": 0,
       "levels": [
         1.0,
@@ -3291,28 +3291,28 @@
         "region": "sector_alpha",
         "injected_level": 0.8,
         "coverage_fraction": 0.75,
-        "confidence": 0.45,
+        "confidence": 0.3937,
         "state": "UNKNOWN"
       },
       {
         "region": "sector_alpha",
         "injected_level": 0.6,
         "coverage_fraction": 0.55,
-        "confidence": 0.45,
+        "confidence": 0.3488,
         "state": "UNKNOWN"
       },
       {
         "region": "sector_alpha",
         "injected_level": 0.4,
         "coverage_fraction": 0.3875,
-        "confidence": 0.45,
+        "confidence": 0.3122,
         "state": "UNKNOWN"
       },
       {
         "region": "sector_alpha",
         "injected_level": 0.2,
         "coverage_fraction": 0.2,
-        "confidence": 0.45,
+        "confidence": 0.27,
         "state": "UNKNOWN"
       },
       {
@@ -3326,28 +3326,28 @@
         "region": "grid_a1",
         "injected_level": 0.8,
         "coverage_fraction": 0.8,
-        "confidence": 0.45,
+        "confidence": 0.405,
         "state": "UNKNOWN"
       },
       {
         "region": "grid_a1",
         "injected_level": 0.6,
         "coverage_fraction": 0.6,
-        "confidence": 0.45,
+        "confidence": 0.36,
         "state": "UNKNOWN"
       },
       {
         "region": "grid_a1",
         "injected_level": 0.4,
         "coverage_fraction": 0.4,
-        "confidence": 0.45,
+        "confidence": 0.315,
         "state": "UNKNOWN"
       },
       {
         "region": "grid_a1",
         "injected_level": 0.2,
         "coverage_fraction": 0.2,
-        "confidence": 0.45,
+        "confidence": 0.27,
         "state": "UNKNOWN"
       },
       {
