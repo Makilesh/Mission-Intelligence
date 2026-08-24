@@ -40,6 +40,17 @@ _add(
 )
 _add(
     Region(
+        region_id="mission_area",
+        name="Mission Area",
+        atomic=False,
+        children=["sector_alpha", "sector_bravo", "sector_charlie"],
+        centroid=(12.20, 45.63),
+        terrain="mixed",
+        notes="Union of all tasked sectors; used when the operator names no region.",
+    )
+)
+_add(
+    Region(
         region_id="sector_bravo",
         name="Sector Bravo",
         atomic=False,
