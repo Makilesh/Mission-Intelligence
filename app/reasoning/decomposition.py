@@ -111,7 +111,7 @@ def extract_time_range(question: str) -> tuple[TimeRange | None, str]:
             f"relative window: last {amount} {unit}",
         )
 
-    if re.search(r"(right now|currently|at this time|at the moment|at present)", q):
+    if re.search(r"\b(right now|currently|at this time|at the moment|at present)\b", q):
         return (
             TimeRange(start=world.MISSION_NOW - timedelta(minutes=20), end=world.MISSION_NOW),
             "relative window: current picture (last 20 min)",
