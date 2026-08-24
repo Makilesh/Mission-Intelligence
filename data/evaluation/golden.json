@@ -1,0 +1,1694 @@
+{
+  "query_set_version": "golden-v1.0.0",
+  "count": 50,
+  "generated_at": "2026-08-24T18:34:57.019205Z",
+  "questions": [
+    {
+      "qid": "G01",
+      "question": "Were there any surface contacts in Sector Alpha between 04:00 and 04:20?",
+      "category": "planted_absence",
+      "region": "sector_alpha",
+      "window": [
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          20
+        ]
+      ],
+      "expected_state": "OBSERVED_ABSENCE",
+      "expects_contradiction": false,
+      "expects_blind_window": false,
+      "expected_coverage_band": [
+        0.9,
+        1.0
+      ],
+      "relevant_ids": [
+        "AIS-1301",
+        "EO-1201",
+        "EO-1202",
+        "MR-001",
+        "RADAR-102",
+        "RADAR-103",
+        "RADAR-104",
+        "RADAR-105",
+        "RADAR-106"
+      ],
+      "forbidden_ids": [
+        "RADAR-090",
+        "TRAP-802"
+      ],
+      "must_mention_gap": true,
+      "notes": "Demo 1. Coverage 0.95; the 4-minute Grid B7 gap must still be reported."
+    },
+    {
+      "qid": "G02",
+      "question": "Were there any contacts in Grid A1 between 04:00 and 04:20?",
+      "category": "planted_absence",
+      "region": "grid_a1",
+      "window": [
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          20
+        ]
+      ],
+      "expected_state": "OBSERVED_ABSENCE",
+      "expects_contradiction": false,
+      "expects_blind_window": false,
+      "expected_coverage_band": [
+        0.95,
+        1.0
+      ],
+      "relevant_ids": [
+        "AIS-1301",
+        "EO-1201",
+        "EO-1202",
+        "MR-001",
+        "RADAR-102",
+        "RADAR-103",
+        "RADAR-104",
+        "RADAR-105",
+        "RADAR-106"
+      ],
+      "forbidden_ids": [],
+      "must_mention_gap": false,
+      "notes": ""
+    },
+    {
+      "qid": "G03",
+      "question": "Was Grid A2 clear of surface contacts between 04:00 and 04:20?",
+      "category": "planted_absence",
+      "region": "grid_a2",
+      "window": [
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          20
+        ]
+      ],
+      "expected_state": "OBSERVED_ABSENCE",
+      "expects_contradiction": false,
+      "expects_blind_window": false,
+      "expected_coverage_band": [
+        0.95,
+        1.0
+      ],
+      "relevant_ids": [
+        "AIS-1301",
+        "EO-1201",
+        "EO-1202",
+        "MR-001",
+        "RADAR-102",
+        "RADAR-103",
+        "RADAR-104",
+        "RADAR-105",
+        "RADAR-106"
+      ],
+      "forbidden_ids": [],
+      "must_mention_gap": false,
+      "notes": ""
+    },
+    {
+      "qid": "G04",
+      "question": "Were any vessels detected in Grid A3 between 04:00 and 04:20?",
+      "category": "planted_absence",
+      "region": "grid_a3",
+      "window": [
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          20
+        ]
+      ],
+      "expected_state": "OBSERVED_ABSENCE",
+      "expects_contradiction": false,
+      "expects_blind_window": false,
+      "expected_coverage_band": [
+        0.95,
+        1.0
+      ],
+      "relevant_ids": [
+        "AIS-1301",
+        "EO-1201",
+        "EO-1202",
+        "MR-001",
+        "RADAR-102",
+        "RADAR-103",
+        "RADAR-104",
+        "RADAR-105",
+        "RADAR-106"
+      ],
+      "forbidden_ids": [],
+      "must_mention_gap": false,
+      "notes": ""
+    },
+    {
+      "qid": "G05",
+      "question": "Were there any surface contacts in Sector Alpha between 04:00 and 04:07?",
+      "category": "planted_absence",
+      "region": "sector_alpha",
+      "window": [
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          7
+        ]
+      ],
+      "expected_state": "OBSERVED_ABSENCE",
+      "expects_contradiction": false,
+      "expects_blind_window": false,
+      "expected_coverage_band": [
+        0.95,
+        1.0
+      ],
+      "relevant_ids": [
+        "AIS-1301",
+        "EO-1201",
+        "MR-001",
+        "RADAR-102",
+        "RADAR-103",
+        "RADAR-104"
+      ],
+      "forbidden_ids": [],
+      "must_mention_gap": false,
+      "notes": "Fully covered sub-window: coverage must be higher than G01."
+    },
+    {
+      "qid": "G06",
+      "question": "Were there any contacts in Grid B7 between 04:00 and 04:07?",
+      "category": "planted_absence",
+      "region": "grid_b7",
+      "window": [
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          7
+        ]
+      ],
+      "expected_state": "OBSERVED_ABSENCE",
+      "expects_contradiction": false,
+      "expects_blind_window": false,
+      "expected_coverage_band": [
+        0.9,
+        1.0
+      ],
+      "relevant_ids": [
+        "AIS-1301",
+        "EO-1201",
+        "MR-001",
+        "RADAR-102",
+        "RADAR-103",
+        "RADAR-104"
+      ],
+      "forbidden_ids": [],
+      "must_mention_gap": false,
+      "notes": ""
+    },
+    {
+      "qid": "G07",
+      "question": "Were there any contacts in Sector Alpha between 04:07 and 04:11?",
+      "category": "blind_window",
+      "region": "sector_alpha",
+      "window": [
+        [
+          4,
+          7
+        ],
+        [
+          4,
+          11
+        ]
+      ],
+      "expected_state": "UNKNOWN",
+      "expects_contradiction": false,
+      "expects_blind_window": true,
+      "expected_coverage_band": [
+        0.6,
+        0.85
+      ],
+      "relevant_ids": [
+        "AIS-1301",
+        "EO-1202",
+        "MR-001",
+        "RADAR-103",
+        "RADAR-104"
+      ],
+      "forbidden_ids": [
+        "TRAP-802",
+        "TRAP-805"
+      ],
+      "must_mention_gap": true,
+      "notes": "Demo 2. The training-annex distractors must not carry the answer."
+    },
+    {
+      "qid": "G08",
+      "question": "Were there any contacts in Grid B7 between 04:07 and 04:11?",
+      "category": "blind_window",
+      "region": "grid_b7",
+      "window": [
+        [
+          4,
+          7
+        ],
+        [
+          4,
+          11
+        ]
+      ],
+      "expected_state": "UNKNOWN",
+      "expects_contradiction": false,
+      "expects_blind_window": true,
+      "expected_coverage_band": [
+        0.0,
+        0.05
+      ],
+      "relevant_ids": [
+        "AIS-1301",
+        "EO-1202",
+        "MR-001",
+        "RADAR-103",
+        "RADAR-104"
+      ],
+      "forbidden_ids": [
+        "TRAP-802",
+        "TRAP-805"
+      ],
+      "must_mention_gap": true,
+      "notes": ""
+    },
+    {
+      "qid": "G09",
+      "question": "Can we conclude that nothing was present in Grid B7 at 04:09?",
+      "category": "blind_window",
+      "region": "grid_b7",
+      "window": [
+        [
+          4,
+          7
+        ],
+        [
+          4,
+          11
+        ]
+      ],
+      "expected_state": "UNKNOWN",
+      "expects_contradiction": false,
+      "expects_blind_window": true,
+      "expected_coverage_band": [
+        0.4,
+        0.7
+      ],
+      "relevant_ids": [
+        "AIS-1301",
+        "EO-1202",
+        "MR-001",
+        "RADAR-103",
+        "RADAR-104"
+      ],
+      "forbidden_ids": [],
+      "must_mention_gap": true,
+      "notes": "A point-in-time question is widened to +/-5 min, so 6 of those 10 minutes are covered - still not enough to license an absence claim."
+    },
+    {
+      "qid": "G10",
+      "question": "Was Grid B7 observed between 04:07 and 04:11?",
+      "category": "blind_window",
+      "region": "grid_b7",
+      "window": [
+        [
+          4,
+          7
+        ],
+        [
+          4,
+          11
+        ]
+      ],
+      "expected_state": "UNKNOWN",
+      "expects_contradiction": false,
+      "expects_blind_window": true,
+      "expected_coverage_band": [
+        0.0,
+        0.05
+      ],
+      "relevant_ids": [
+        "AIS-1301",
+        "EO-1202",
+        "MR-001",
+        "RADAR-103",
+        "RADAR-104"
+      ],
+      "forbidden_ids": [],
+      "must_mention_gap": false,
+      "notes": ""
+    },
+    {
+      "qid": "G11",
+      "question": "Were there any contacts in Sector Alpha between 04:05 and 04:13?",
+      "category": "blind_window",
+      "region": "sector_alpha",
+      "window": [
+        [
+          4,
+          5
+        ],
+        [
+          4,
+          13
+        ]
+      ],
+      "expected_state": "UNKNOWN",
+      "expects_contradiction": false,
+      "expects_blind_window": true,
+      "expected_coverage_band": [
+        0.7,
+        0.95
+      ],
+      "relevant_ids": [
+        "AIS-1301",
+        "EO-1201",
+        "EO-1202",
+        "MR-001",
+        "RADAR-103",
+        "RADAR-104",
+        "RADAR-105"
+      ],
+      "forbidden_ids": [],
+      "must_mention_gap": true,
+      "notes": "Window straddles the blackout: a whole sub-region is dark for half of it."
+    },
+    {
+      "qid": "G12",
+      "question": "Can we conclude that no contacts were present in Sector C?",
+      "category": "partial_coverage",
+      "region": "sector_charlie",
+      "window": null,
+      "expected_state": "PRESENCE",
+      "expects_contradiction": false,
+      "expects_blind_window": false,
+      "expected_coverage_band": [
+        0.0,
+        0.5
+      ],
+      "relevant_ids": [
+        "AIS-3040",
+        "AIS-3042",
+        "AIS-3044",
+        "AIS-3072",
+        "IMG-3119",
+        "IMG-3122",
+        "IMG-3125",
+        "MR-030",
+        "MR-3103",
+        "MR-3104",
+        "MR-3105",
+        "MR-3106",
+        "MR-3111",
+        "MR-3115"
+      ],
+      "forbidden_ids": [],
+      "must_mention_gap": false,
+      "notes": "AIS sees cooperative traffic only; an absence claim must be refused."
+    },
+    {
+      "qid": "G13",
+      "question": "Were there any non-cooperative contacts in Sector Charlie between 04:00 and 04:30?",
+      "category": "partial_coverage",
+      "region": "sector_charlie",
+      "window": [
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          30
+        ]
+      ],
+      "expected_state": "UNKNOWN",
+      "expects_contradiction": false,
+      "expects_blind_window": false,
+      "expected_coverage_band": [
+        0.0,
+        0.5
+      ],
+      "relevant_ids": [
+        "AIS-3042",
+        "AIS-3072",
+        "IMG-3122",
+        "MR-3104"
+      ],
+      "forbidden_ids": [],
+      "must_mention_gap": false,
+      "notes": ""
+    },
+    {
+      "qid": "G14",
+      "question": "Were there any contacts in Grid C1 between 05:00 and 05:20?",
+      "category": "partial_coverage",
+      "region": "grid_c1",
+      "window": [
+        [
+          5,
+          0
+        ],
+        [
+          5,
+          20
+        ]
+      ],
+      "expected_state": "UNKNOWN",
+      "expects_contradiction": false,
+      "expects_blind_window": false,
+      "expected_coverage_band": [
+        0.0,
+        0.5
+      ],
+      "relevant_ids": [
+        "MR-030",
+        "MR-3106"
+      ],
+      "forbidden_ids": [],
+      "must_mention_gap": false,
+      "notes": ""
+    },
+    {
+      "qid": "G15",
+      "question": "Were there any contacts in Sector Alpha between 05:40 and 05:55?",
+      "category": "partial_coverage",
+      "region": "sector_alpha",
+      "window": [
+        [
+          5,
+          40
+        ],
+        [
+          5,
+          55
+        ]
+      ],
+      "expected_state": "PRESENCE",
+      "expects_contradiction": false,
+      "expects_blind_window": false,
+      "expected_coverage_band": [
+        0.2,
+        0.7
+      ],
+      "relevant_ids": [
+        "AIS-3041",
+        "AIS-3049",
+        "AIS-3063",
+        "MR-014",
+        "MR-021",
+        "MR-3108",
+        "RADAR-3002",
+        "RADAR-3008",
+        "RADAR-3024",
+        "RADAR-3025",
+        "RADAR-3033",
+        "RADAR-3037",
+        "RF-3091"
+      ],
+      "forbidden_ids": [],
+      "must_mention_gap": false,
+      "notes": "Contacts exist; radar is degraded by sea clutter and EO/IR is off station, so the answer must carry the degraded-coverage caveat."
+    },
+    {
+      "qid": "G16",
+      "question": "Were there any AIS contacts in Sector Alpha between 04:41 and 04:51?",
+      "category": "partial_coverage",
+      "region": "sector_alpha",
+      "window": [
+        [
+          4,
+          41
+        ],
+        [
+          4,
+          51
+        ]
+      ],
+      "expected_state": "UNKNOWN",
+      "expects_contradiction": false,
+      "expects_blind_window": false,
+      "expected_coverage_band": [
+        0.5,
+        0.95
+      ],
+      "relevant_ids": [
+        "EO-3081",
+        "EO-3083",
+        "EO-3084",
+        "MR-3107",
+        "MR-3113",
+        "NOTE-701",
+        "RF-3095"
+      ],
+      "forbidden_ids": [],
+      "must_mention_gap": false,
+      "notes": "AIS receiver reset: the AIS channel is blind even though radar is not."
+    },
+    {
+      "qid": "G17",
+      "question": "Were there any RF emissions in Sector Alpha between 04:41 and 04:55?",
+      "category": "partial_coverage",
+      "region": "sector_alpha",
+      "window": [
+        [
+          4,
+          41
+        ],
+        [
+          4,
+          55
+        ]
+      ],
+      "expected_state": "UNKNOWN",
+      "expects_contradiction": false,
+      "expects_blind_window": false,
+      "expected_coverage_band": [
+        0.0,
+        0.6
+      ],
+      "relevant_ids": [
+        "AIS-3062",
+        "EO-3081",
+        "EO-3083",
+        "EO-3084",
+        "MR-3107",
+        "MR-3113",
+        "NOTE-701",
+        "RF-3095"
+      ],
+      "forbidden_ids": [],
+      "must_mention_gap": false,
+      "notes": "RF receiver dropout 04:40-05:00."
+    },
+    {
+      "qid": "G18",
+      "question": "What vessel was detected near Grid B7?",
+      "category": "contradiction",
+      "region": "grid_b7",
+      "window": [
+        [
+          5,
+          10
+        ],
+        [
+          5,
+          35
+        ]
+      ],
+      "expected_state": "CONTRADICTION",
+      "expects_contradiction": true,
+      "expects_blind_window": false,
+      "expected_coverage_band": [
+        0.0,
+        1.0
+      ],
+      "relevant_ids": [
+        "AIS-1312",
+        "EO-1042",
+        "MR-014",
+        "RADAR-221"
+      ],
+      "forbidden_ids": [
+        "MR-099"
+      ],
+      "must_mention_gap": false,
+      "notes": "Demo 3. AIS says V-17, the mission report says V-21."
+    },
+    {
+      "qid": "G19",
+      "question": "What is the identity of the contact in Grid B7 at 05:20?",
+      "category": "contradiction",
+      "region": "grid_b7",
+      "window": [
+        [
+          5,
+          15
+        ],
+        [
+          5,
+          30
+        ]
+      ],
+      "expected_state": "CONTRADICTION",
+      "expects_contradiction": true,
+      "expects_blind_window": false,
+      "expected_coverage_band": [
+        0.0,
+        1.0
+      ],
+      "relevant_ids": [
+        "AIS-1312",
+        "EO-1042",
+        "MR-014",
+        "RADAR-221"
+      ],
+      "forbidden_ids": [
+        "MR-099"
+      ],
+      "must_mention_gap": false,
+      "notes": ""
+    },
+    {
+      "qid": "G20",
+      "question": "Why are these two sources reporting different vessel identities in Grid B7 at 05:20?",
+      "category": "contradiction",
+      "region": "grid_b7",
+      "window": [
+        [
+          5,
+          15
+        ],
+        [
+          5,
+          30
+        ]
+      ],
+      "expected_state": "CONTRADICTION",
+      "expects_contradiction": true,
+      "expects_blind_window": false,
+      "expected_coverage_band": [
+        0.0,
+        1.0
+      ],
+      "relevant_ids": [
+        "AIS-1312",
+        "EO-1042",
+        "MR-014",
+        "RADAR-221"
+      ],
+      "forbidden_ids": [],
+      "must_mention_gap": false,
+      "notes": ""
+    },
+    {
+      "qid": "G21",
+      "question": "What heading was the contact in Grid B7 making at 05:20?",
+      "category": "contradiction",
+      "region": "grid_b7",
+      "window": [
+        [
+          5,
+          15
+        ],
+        [
+          5,
+          30
+        ]
+      ],
+      "expected_state": "CONTRADICTION",
+      "expects_contradiction": true,
+      "expects_blind_window": false,
+      "expected_coverage_band": [
+        0.0,
+        1.0
+      ],
+      "relevant_ids": [
+        "AIS-1312",
+        "RADAR-221"
+      ],
+      "forbidden_ids": [],
+      "must_mention_gap": false,
+      "notes": ""
+    },
+    {
+      "qid": "G22",
+      "question": "How fast was the contact in Grid B7 travelling at 05:20?",
+      "category": "contradiction",
+      "region": "grid_b7",
+      "window": [
+        [
+          5,
+          15
+        ],
+        [
+          5,
+          30
+        ]
+      ],
+      "expected_state": "CONTRADICTION",
+      "expects_contradiction": true,
+      "expects_blind_window": false,
+      "expected_coverage_band": [
+        0.0,
+        1.0
+      ],
+      "relevant_ids": [
+        "AIS-1312",
+        "RADAR-221"
+      ],
+      "forbidden_ids": [],
+      "must_mention_gap": false,
+      "notes": ""
+    },
+    {
+      "qid": "G23",
+      "question": "What was the RF emission detected in Grid A2 at 05:04?",
+      "category": "false_contradiction",
+      "region": "grid_a2",
+      "window": [
+        [
+          5,
+          0
+        ],
+        [
+          5,
+          10
+        ]
+      ],
+      "expected_state": "PRESENCE",
+      "expects_contradiction": false,
+      "expects_blind_window": false,
+      "expected_coverage_band": [
+        0.0,
+        1.0
+      ],
+      "relevant_ids": [
+        "NOTE-701",
+        "RF-601"
+      ],
+      "forbidden_ids": [],
+      "must_mention_gap": false,
+      "notes": "Two low-reliability sources disagree: flag it, but do not let it dominate."
+    },
+    {
+      "qid": "G24",
+      "question": "Is the vessel detected at 05:20 the same vessel tracked at 04:00?",
+      "category": "multi_hop",
+      "region": null,
+      "window": [
+        [
+          4,
+          0
+        ],
+        [
+          5,
+          20
+        ]
+      ],
+      "expected_state": "CONTRADICTION",
+      "expects_contradiction": true,
+      "expects_blind_window": false,
+      "expected_coverage_band": [
+        0.0,
+        1.0
+      ],
+      "relevant_ids": [
+        "AIS-1310",
+        "AIS-1312",
+        "MR-014",
+        "MR-021",
+        "RADAR-210",
+        "RADAR-221"
+      ],
+      "forbidden_ids": [],
+      "must_mention_gap": false,
+      "notes": "Demo 4. Kinematics match, identity is contested, custody was lost."
+    },
+    {
+      "qid": "G25",
+      "question": "Where was track T-42 last held?",
+      "category": "multi_hop",
+      "region": "sector_bravo",
+      "window": [
+        [
+          4,
+          30
+        ],
+        [
+          4,
+          50
+        ]
+      ],
+      "expected_state": "PRESENCE",
+      "expects_contradiction": false,
+      "expects_blind_window": false,
+      "expected_coverage_band": [
+        0.0,
+        1.0
+      ],
+      "relevant_ids": [
+        "AIS-1311",
+        "RADAR-212"
+      ],
+      "forbidden_ids": [],
+      "must_mention_gap": false,
+      "notes": ""
+    },
+    {
+      "qid": "G26",
+      "question": "Was track T-88 in Grid B7 after 05:15?",
+      "category": "multi_hop",
+      "region": "grid_b7",
+      "window": [
+        [
+          5,
+          15
+        ],
+        [
+          5,
+          40
+        ]
+      ],
+      "expected_state": "CONTRADICTION",
+      "expects_contradiction": true,
+      "expects_blind_window": false,
+      "expected_coverage_band": [
+        0.0,
+        1.0
+      ],
+      "relevant_ids": [
+        "RADAR-221",
+        "RADAR-222"
+      ],
+      "forbidden_ids": [],
+      "must_mention_gap": false,
+      "notes": ""
+    },
+    {
+      "qid": "G27",
+      "question": "Was Sector Bravo observed by radar between 04:52 and 05:12?",
+      "category": "multi_hop",
+      "region": "sector_bravo",
+      "window": [
+        [
+          4,
+          52
+        ],
+        [
+          5,
+          12
+        ]
+      ],
+      "expected_state": "UNKNOWN",
+      "expects_contradiction": false,
+      "expects_blind_window": true,
+      "expected_coverage_band": [
+        0.0,
+        0.2
+      ],
+      "relevant_ids": [
+        "AIS-1320",
+        "AIS-3066",
+        "AIS-3070",
+        "IMG-3124",
+        "MR-3109",
+        "MR-3114",
+        "RADAR-3011",
+        "RF-3093"
+      ],
+      "forbidden_ids": [],
+      "must_mention_gap": true,
+      "notes": "Radar_02 is down for the Bravo/Alpha custody handover."
+    },
+    {
+      "qid": "G28",
+      "question": "What contacts were observed in Grid B1 between 05:00 and 05:10?",
+      "category": "presence",
+      "region": "grid_b1",
+      "window": [
+        [
+          5,
+          0
+        ],
+        [
+          5,
+          10
+        ]
+      ],
+      "expected_state": "PRESENCE",
+      "expects_contradiction": false,
+      "expects_blind_window": false,
+      "expected_coverage_band": [
+        0.0,
+        1.0
+      ],
+      "relevant_ids": [
+        "AIS-1320",
+        "RADAR-230"
+      ],
+      "forbidden_ids": [],
+      "must_mention_gap": false,
+      "notes": ""
+    },
+    {
+      "qid": "G29",
+      "question": "Was vessel MV KESTREL observed in Sector Bravo?",
+      "category": "presence",
+      "region": "sector_bravo",
+      "window": [
+        [
+          3,
+          55
+        ],
+        [
+          4,
+          45
+        ]
+      ],
+      "expected_state": "PRESENCE",
+      "expects_contradiction": false,
+      "expects_blind_window": false,
+      "expected_coverage_band": [
+        0.0,
+        1.0
+      ],
+      "relevant_ids": [
+        "AIS-1310",
+        "AIS-1311"
+      ],
+      "forbidden_ids": [],
+      "must_mention_gap": false,
+      "notes": ""
+    },
+    {
+      "qid": "G30",
+      "question": "What contacts were observed in Grid A1 between 05:30 and 05:40?",
+      "category": "presence",
+      "region": "grid_a1",
+      "window": [
+        [
+          5,
+          30
+        ],
+        [
+          5,
+          40
+        ]
+      ],
+      "expected_state": "PRESENCE",
+      "expects_contradiction": false,
+      "expects_blind_window": false,
+      "expected_coverage_band": [
+        0.0,
+        1.0
+      ],
+      "relevant_ids": [
+        "AIS-1330",
+        "RADAR-240"
+      ],
+      "forbidden_ids": [],
+      "must_mention_gap": false,
+      "notes": ""
+    },
+    {
+      "qid": "G31",
+      "question": "Was vessel V-17 observed after 04:00?",
+      "category": "presence",
+      "region": null,
+      "window": [
+        [
+          4,
+          0
+        ],
+        [
+          5,
+          40
+        ]
+      ],
+      "expected_state": "CONTRADICTION",
+      "expects_contradiction": true,
+      "expects_blind_window": false,
+      "expected_coverage_band": [
+        0.0,
+        1.0
+      ],
+      "relevant_ids": [
+        "AIS-1312",
+        "MR-014"
+      ],
+      "forbidden_ids": [
+        "MR-099",
+        "RF-610"
+      ],
+      "must_mention_gap": false,
+      "notes": "V-17 appears in a previous-mission report and in a stale RF association."
+    },
+    {
+      "qid": "G32",
+      "question": "What did the imagery pass over Grid B7 at 05:17 show?",
+      "category": "presence",
+      "region": "grid_b7",
+      "window": [
+        [
+          5,
+          12
+        ],
+        [
+          5,
+          22
+        ]
+      ],
+      "expected_state": "CONTRADICTION",
+      "expects_contradiction": true,
+      "expects_blind_window": false,
+      "expected_coverage_band": [
+        0.0,
+        1.0
+      ],
+      "relevant_ids": [
+        "IMG-401"
+      ],
+      "forbidden_ids": [],
+      "must_mention_gap": false,
+      "notes": ""
+    },
+    {
+      "qid": "G33",
+      "question": "What contacts were observed in Sector Alpha during the last 20 minutes?",
+      "category": "presence",
+      "region": "sector_alpha",
+      "window": [
+        [
+          5,
+          20
+        ],
+        [
+          5,
+          40
+        ]
+      ],
+      "expected_state": "PRESENCE",
+      "expects_contradiction": false,
+      "expects_blind_window": false,
+      "expected_coverage_band": [
+        0.0,
+        1.0
+      ],
+      "relevant_ids": [
+        "AIS-1330",
+        "RADAR-240"
+      ],
+      "forbidden_ids": [],
+      "must_mention_gap": false,
+      "notes": ""
+    },
+    {
+      "qid": "G34",
+      "question": "Was there any AIS traffic in Grid C2 between 04:00 and 05:30?",
+      "category": "presence",
+      "region": "grid_c2",
+      "window": [
+        [
+          4,
+          0
+        ],
+        [
+          5,
+          30
+        ]
+      ],
+      "expected_state": "PRESENCE",
+      "expects_contradiction": false,
+      "expects_blind_window": false,
+      "expected_coverage_band": [
+        0.0,
+        1.0
+      ],
+      "relevant_ids": [
+        "AIS-3042",
+        "AIS-3044",
+        "AIS-3072",
+        "IMG-3122",
+        "IMG-3125",
+        "MR-030",
+        "MR-3104",
+        "MR-3105",
+        "MR-3106"
+      ],
+      "forbidden_ids": [],
+      "must_mention_gap": false,
+      "notes": ""
+    },
+    {
+      "qid": "G35",
+      "question": "Were there any suspicious RF emissions in Sector Alpha during the last hour?",
+      "category": "presence",
+      "region": "sector_alpha",
+      "window": [
+        [
+          4,
+          40
+        ],
+        [
+          5,
+          40
+        ]
+      ],
+      "expected_state": "PRESENCE",
+      "expects_contradiction": false,
+      "expects_blind_window": false,
+      "expected_coverage_band": [
+        0.0,
+        1.0
+      ],
+      "relevant_ids": [
+        "RF-601",
+        "RF-603"
+      ],
+      "forbidden_ids": [],
+      "must_mention_gap": false,
+      "notes": ""
+    },
+    {
+      "qid": "G36",
+      "question": "Was vessel V-17 positively identified in Grid B7 during this mission?",
+      "category": "stale",
+      "region": "grid_b7",
+      "window": [
+        [
+          5,
+          10
+        ],
+        [
+          5,
+          35
+        ]
+      ],
+      "expected_state": "CONTRADICTION",
+      "expects_contradiction": true,
+      "expects_blind_window": false,
+      "expected_coverage_band": [
+        0.0,
+        1.0
+      ],
+      "relevant_ids": [
+        "AIS-1312",
+        "EO-1042",
+        "EO-3079",
+        "IMG-401",
+        "MR-014",
+        "MR-021",
+        "MR-3107",
+        "MR-3108",
+        "MR-3110",
+        "RADAR-221",
+        "RADAR-222",
+        "RADAR-3033",
+        "RF-3100",
+        "RF-604"
+      ],
+      "forbidden_ids": [
+        "MR-099"
+      ],
+      "must_mention_gap": false,
+      "notes": "MR-099 is a previous-day identification and must not be treated as current."
+    },
+    {
+      "qid": "G37",
+      "question": "Were there any surface contacts in Sector Alpha at 02:10?",
+      "category": "stale",
+      "region": "sector_alpha",
+      "window": [
+        [
+          2,
+          5
+        ],
+        [
+          2,
+          15
+        ]
+      ],
+      "expected_state": "UNKNOWN",
+      "expects_contradiction": false,
+      "expects_blind_window": false,
+      "expected_coverage_band": [
+        0.0,
+        0.05
+      ],
+      "relevant_ids": [],
+      "forbidden_ids": [],
+      "must_mention_gap": false,
+      "notes": "Before the mission window: the ledger has no entries at all."
+    },
+    {
+      "qid": "G38",
+      "question": "What was the last confirmed identity of the Grid B7 contact?",
+      "category": "stale",
+      "region": "grid_b7",
+      "window": [
+        [
+          5,
+          10
+        ],
+        [
+          5,
+          35
+        ]
+      ],
+      "expected_state": "CONTRADICTION",
+      "expects_contradiction": true,
+      "expects_blind_window": false,
+      "expected_coverage_band": [
+        0.0,
+        1.0
+      ],
+      "relevant_ids": [
+        "AIS-1312",
+        "EO-1042",
+        "EO-3079",
+        "IMG-401",
+        "MR-014",
+        "MR-021",
+        "MR-3107",
+        "MR-3108",
+        "MR-3110",
+        "RADAR-221",
+        "RADAR-222",
+        "RADAR-3033",
+        "RF-3100",
+        "RF-604"
+      ],
+      "forbidden_ids": [
+        "MR-099"
+      ],
+      "must_mention_gap": false,
+      "notes": ""
+    },
+    {
+      "qid": "G39",
+      "question": "Are there emissions associated with V-17 in Sector Bravo right now?",
+      "category": "stale",
+      "region": "sector_bravo",
+      "window": [
+        [
+          5,
+          20
+        ],
+        [
+          5,
+          40
+        ]
+      ],
+      "expected_state": "UNKNOWN",
+      "expects_contradiction": false,
+      "expects_blind_window": false,
+      "expected_coverage_band": [
+        0.0,
+        1.0
+      ],
+      "relevant_ids": [
+        "AIS-3050",
+        "AIS-3059",
+        "AIS-3065",
+        "AIS-3069",
+        "AIS-3071",
+        "MR-3112",
+        "MR-3114",
+        "RADAR-3019",
+        "RADAR-3021",
+        "RADAR-3028",
+        "RF-3092",
+        "RF-3097"
+      ],
+      "forbidden_ids": [
+        "RF-610"
+      ],
+      "must_mention_gap": false,
+      "notes": "RF-610 is a historical association from 04:15, not a current detection."
+    },
+    {
+      "qid": "G40",
+      "question": "Was the Sector Alpha sweep at 04:09 negative?",
+      "category": "trap",
+      "region": "sector_alpha",
+      "window": [
+        [
+          4,
+          7
+        ],
+        [
+          4,
+          11
+        ]
+      ],
+      "expected_state": "UNKNOWN",
+      "expects_contradiction": false,
+      "expects_blind_window": true,
+      "expected_coverage_band": [
+        0.0,
+        1.0
+      ],
+      "relevant_ids": [
+        "AIS-1301",
+        "EO-1202",
+        "MR-001",
+        "RADAR-103",
+        "RADAR-104"
+      ],
+      "forbidden_ids": [
+        "TRAP-802",
+        "TRAP-805"
+      ],
+      "must_mention_gap": true,
+      "notes": "Near-identical annex records exist for exactly this window."
+    },
+    {
+      "qid": "G41",
+      "question": "Were there contacts in the Sector Alpha Training Annex between 04:07 and 04:11?",
+      "category": "trap",
+      "region": "sector_alpha_training_annex",
+      "window": [
+        [
+          4,
+          7
+        ],
+        [
+          4,
+          11
+        ]
+      ],
+      "expected_state": "UNKNOWN",
+      "expects_contradiction": false,
+      "expects_blind_window": false,
+      "expected_coverage_band": [
+        0.0,
+        0.05
+      ],
+      "relevant_ids": [],
+      "forbidden_ids": [],
+      "must_mention_gap": false,
+      "notes": "The annex is real but has no coverage ledger entries at all -> UNKNOWN."
+    },
+    {
+      "qid": "G42",
+      "question": "Was Grid B7 swept and reported clear at 04:09?",
+      "category": "trap",
+      "region": "grid_b7",
+      "window": [
+        [
+          4,
+          7
+        ],
+        [
+          4,
+          11
+        ]
+      ],
+      "expected_state": "UNKNOWN",
+      "expects_contradiction": false,
+      "expects_blind_window": true,
+      "expected_coverage_band": [
+        0.4,
+        0.7
+      ],
+      "relevant_ids": [
+        "AIS-1301",
+        "EO-1202",
+        "MR-001",
+        "RADAR-103",
+        "RADAR-104"
+      ],
+      "forbidden_ids": [
+        "TRAP-802",
+        "TRAP-805"
+      ],
+      "must_mention_gap": true,
+      "notes": "The annex records say exactly this for exactly this window."
+    },
+    {
+      "qid": "G43",
+      "question": "Was Sector Alpha swept and found empty before 03:00?",
+      "category": "trap",
+      "region": "sector_alpha",
+      "window": [
+        [
+          2,
+          0
+        ],
+        [
+          3,
+          0
+        ]
+      ],
+      "expected_state": "UNKNOWN",
+      "expects_contradiction": false,
+      "expects_blind_window": false,
+      "expected_coverage_band": [
+        0.0,
+        0.05
+      ],
+      "relevant_ids": [],
+      "forbidden_ids": [],
+      "must_mention_gap": false,
+      "notes": "RADAR-090 says exactly this and is the right record to surface - but it predates the ledger, so it must not license an absence claim."
+    },
+    {
+      "qid": "G44",
+      "question": "Which modalities covered Sector Alpha between 04:00 and 04:20?",
+      "category": "coverage",
+      "region": "sector_alpha",
+      "window": [
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          20
+        ]
+      ],
+      "expected_state": "OBSERVED_ABSENCE",
+      "expects_contradiction": false,
+      "expects_blind_window": false,
+      "expected_coverage_band": [
+        0.9,
+        1.0
+      ],
+      "relevant_ids": [
+        "AIS-1301",
+        "EO-1201",
+        "EO-1202",
+        "MR-001",
+        "RADAR-102",
+        "RADAR-103",
+        "RADAR-104",
+        "RADAR-105",
+        "RADAR-106"
+      ],
+      "forbidden_ids": [],
+      "must_mention_gap": false,
+      "notes": ""
+    },
+    {
+      "qid": "G45",
+      "question": "Was EO/IR available over Sector Alpha at 03:35?",
+      "category": "coverage",
+      "region": "sector_alpha",
+      "window": [
+        [
+          3,
+          30
+        ],
+        [
+          3,
+          40
+        ]
+      ],
+      "expected_state": "UNKNOWN",
+      "expects_contradiction": false,
+      "expects_blind_window": false,
+      "expected_coverage_band": [
+        0.0,
+        0.05
+      ],
+      "relevant_ids": [
+        "AIS-3046",
+        "AIS-3064",
+        "RF-3090"
+      ],
+      "forbidden_ids": [],
+      "must_mention_gap": false,
+      "notes": "The UAV comes on station at 03:45; before that EO/IR has no entries at all."
+    },
+    {
+      "qid": "G46",
+      "question": "Was Sector Charlie covered by radar at any point in the mission?",
+      "category": "coverage",
+      "region": "sector_charlie",
+      "window": null,
+      "expected_state": "UNKNOWN",
+      "expects_contradiction": false,
+      "expects_blind_window": false,
+      "expected_coverage_band": [
+        0.0,
+        0.5
+      ],
+      "relevant_ids": [
+        "AIS-3040",
+        "AIS-3042",
+        "AIS-3044",
+        "AIS-3072",
+        "IMG-3119",
+        "IMG-3122",
+        "IMG-3125",
+        "MR-030",
+        "MR-3103",
+        "MR-3104",
+        "MR-3105",
+        "MR-3106",
+        "MR-3111",
+        "MR-3115"
+      ],
+      "forbidden_ids": [],
+      "must_mention_gap": false,
+      "notes": "Radar is asserted NOT_OBSERVED for Charlie - an assertion, not silence."
+    },
+    {
+      "qid": "G47",
+      "question": "Were there any contacts in Grid A3 between 05:35 and 05:40?",
+      "category": "coverage",
+      "region": "grid_a3",
+      "window": [
+        [
+          5,
+          35
+        ],
+        [
+          5,
+          40
+        ]
+      ],
+      "expected_state": "PRESENCE",
+      "expects_contradiction": false,
+      "expects_blind_window": false,
+      "expected_coverage_band": [
+        0.2,
+        0.8
+      ],
+      "relevant_ids": [
+        "EO-3073",
+        "EO-3080",
+        "MR-021",
+        "MR-3108",
+        "MR-3110",
+        "RF-603"
+      ],
+      "forbidden_ids": [],
+      "must_mention_gap": false,
+      "notes": "An EO/IR detection exists at 05:35; radar is degraded, so the caveat stands."
+    },
+    {
+      "qid": "G48",
+      "question": "What was observed in Grid B2 between 04:15 and 04:25?",
+      "category": "presence",
+      "region": "grid_b2",
+      "window": [
+        [
+          4,
+          15
+        ],
+        [
+          4,
+          25
+        ]
+      ],
+      "expected_state": "PRESENCE",
+      "expects_contradiction": false,
+      "expects_blind_window": false,
+      "expected_coverage_band": [
+        0.0,
+        1.0
+      ],
+      "relevant_ids": [
+        "RADAR-211"
+      ],
+      "forbidden_ids": [],
+      "must_mention_gap": false,
+      "notes": ""
+    },
+    {
+      "qid": "G49",
+      "question": "Were there any contacts in Sector Bravo between 04:52 and 05:12?",
+      "category": "blind_window",
+      "region": "sector_bravo",
+      "window": [
+        [
+          4,
+          52
+        ],
+        [
+          5,
+          12
+        ]
+      ],
+      "expected_state": "PRESENCE",
+      "expects_contradiction": false,
+      "expects_blind_window": true,
+      "expected_coverage_band": [
+        0.0,
+        0.6
+      ],
+      "relevant_ids": [
+        "AIS-1320",
+        "AIS-3066",
+        "AIS-3070",
+        "IMG-3124",
+        "MR-3109",
+        "MR-3114",
+        "RADAR-3011",
+        "RF-3093"
+      ],
+      "forbidden_ids": [],
+      "must_mention_gap": true,
+      "notes": "AIS still holds cooperative traffic while radar_02 is down: PRESENCE is correct, but the radar blind window must still be reported."
+    },
+    {
+      "qid": "G50",
+      "question": "Can we conclude that no contacts were present in Sector Alpha between 04:07 and 04:11?",
+      "category": "blind_window",
+      "region": "sector_alpha",
+      "window": [
+        [
+          4,
+          7
+        ],
+        [
+          4,
+          11
+        ]
+      ],
+      "expected_state": "UNKNOWN",
+      "expects_contradiction": false,
+      "expects_blind_window": true,
+      "expected_coverage_band": [
+        0.6,
+        0.85
+      ],
+      "relevant_ids": [
+        "AIS-1301",
+        "EO-1202",
+        "MR-001",
+        "RADAR-103",
+        "RADAR-104"
+      ],
+      "forbidden_ids": [
+        "TRAP-802",
+        "TRAP-805"
+      ],
+      "must_mention_gap": true,
+      "notes": ""
+    }
+  ]
+}

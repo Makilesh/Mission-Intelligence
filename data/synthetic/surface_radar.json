@@ -578,31 +578,6 @@
     ]
   },
   {
-    "record_id": "RADAR-3009",
-    "modality": "surface_radar",
-    "sensor": "radar_02",
-    "timestamp": "2026-08-22T04:56:00Z",
-    "region": "grid_b1",
-    "text": "Routine surface sweep of Grid B1 at 0456Z: no new contacts held.",
-    "reliability": 0.9,
-    "confidence": 0.84,
-    "entities": [],
-    "position": null,
-    "heading": null,
-    "speed": null,
-    "object_type": null,
-    "classification": null,
-    "frequency_mhz": null,
-    "mmsi": null,
-    "vessel_name": null,
-    "track_id": null,
-    "is_absence_report": true,
-    "payload": {},
-    "tags": [
-      "filler"
-    ]
-  },
-  {
     "record_id": "RADAR-3010",
     "modality": "surface_radar",
     "sensor": "radar_01",
@@ -652,33 +627,6 @@
     "payload": {},
     "tags": [
       "filler"
-    ]
-  },
-  {
-    "record_id": "RADAR-230",
-    "modality": "surface_radar",
-    "sensor": "radar_02",
-    "timestamp": "2026-08-22T05:05:00Z",
-    "region": "grid_b1",
-    "text": "Surface track T-51 held in Grid B1: heading 090 degrees, speed 8.2 knots, large radar cross-section.",
-    "reliability": 0.9,
-    "confidence": 0.9,
-    "entities": [
-      "T-51"
-    ],
-    "position": null,
-    "heading": 90.0,
-    "speed": 8.2,
-    "object_type": "vessel",
-    "classification": null,
-    "frequency_mhz": null,
-    "mmsi": null,
-    "vessel_name": null,
-    "track_id": "T-51",
-    "is_absence_report": false,
-    "payload": {},
-    "tags": [
-      "presence"
     ]
   },
   {

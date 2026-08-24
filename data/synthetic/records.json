@@ -1757,34 +1757,6 @@
     ]
   },
   {
-    "record_id": "AIS-3067",
-    "modality": "ais",
-    "sensor": "ais_rx_01",
-    "timestamp": "2026-08-22T04:41:00Z",
-    "region": "grid_c1",
-    "text": "AIS report: MMSI 412200416, vessel MV TIDEWATER, position Grid C1, heading 72 degrees, speed 10.2 knots.",
-    "reliability": 0.82,
-    "confidence": 0.79,
-    "entities": [
-      "MV TIDEWATER",
-      "412200416"
-    ],
-    "position": null,
-    "heading": 72.0,
-    "speed": 10.2,
-    "object_type": "vessel",
-    "classification": null,
-    "frequency_mhz": null,
-    "mmsi": "412200416",
-    "vessel_name": "MV TIDEWATER",
-    "track_id": null,
-    "is_absence_report": false,
-    "payload": {},
-    "tags": [
-      "filler"
-    ]
-  },
-  {
     "record_id": "EO-3083",
     "modality": "eo_ir",
     "sensor": "eo_ir_01",
@@ -1802,34 +1774,6 @@
     "frequency_mhz": null,
     "mmsi": null,
     "vessel_name": null,
-    "track_id": null,
-    "is_absence_report": false,
-    "payload": {},
-    "tags": [
-      "filler"
-    ]
-  },
-  {
-    "record_id": "AIS-3068",
-    "modality": "ais",
-    "sensor": "ais_rx_01",
-    "timestamp": "2026-08-22T04:43:00Z",
-    "region": "grid_c1",
-    "text": "AIS report: MMSI 412541012, vessel MV LARCH, position Grid C1, heading 135 degrees, speed 3.9 knots.",
-    "reliability": 0.82,
-    "confidence": 0.84,
-    "entities": [
-      "MV LARCH",
-      "412541012"
-    ],
-    "position": null,
-    "heading": 135.0,
-    "speed": 3.9,
-    "object_type": "vessel",
-    "classification": null,
-    "frequency_mhz": null,
-    "mmsi": "412541012",
-    "vessel_name": "MV LARCH",
     "track_id": null,
     "is_absence_report": false,
     "payload": {},
@@ -1988,91 +1932,6 @@
     ]
   },
   {
-    "record_id": "AIS-1340",
-    "modality": "ais",
-    "sensor": "ais_rx_01",
-    "timestamp": "2026-08-22T04:50:00Z",
-    "region": "grid_c1",
-    "text": "AIS report: MMSI 412800444, vessel MV CORAL, position Grid C1, heading 015 degrees, speed 9.3 knots.",
-    "reliability": 0.82,
-    "confidence": 0.84,
-    "entities": [
-      "MV CORAL",
-      "412800444"
-    ],
-    "position": null,
-    "heading": 15.0,
-    "speed": 9.3,
-    "object_type": "vessel",
-    "classification": null,
-    "frequency_mhz": null,
-    "mmsi": "412800444",
-    "vessel_name": "MV CORAL",
-    "track_id": null,
-    "is_absence_report": false,
-    "payload": {},
-    "tags": [
-      "presence",
-      "charlie"
-    ]
-  },
-  {
-    "record_id": "AIS-3051",
-    "modality": "ais",
-    "sensor": "ais_rx_01",
-    "timestamp": "2026-08-22T04:50:00Z",
-    "region": "grid_a3",
-    "text": "AIS report: MMSI 412118000, vessel MV QUARTZ, position Grid A3, heading 3 degrees, speed 5.2 knots.",
-    "reliability": 0.82,
-    "confidence": 0.88,
-    "entities": [
-      "MV QUARTZ",
-      "412118000"
-    ],
-    "position": null,
-    "heading": 3.0,
-    "speed": 5.2,
-    "object_type": "vessel",
-    "classification": null,
-    "frequency_mhz": null,
-    "mmsi": "412118000",
-    "vessel_name": "MV QUARTZ",
-    "track_id": null,
-    "is_absence_report": false,
-    "payload": {},
-    "tags": [
-      "filler"
-    ]
-  },
-  {
-    "record_id": "AIS-3055",
-    "modality": "ais",
-    "sensor": "ais_rx_01",
-    "timestamp": "2026-08-22T04:50:00Z",
-    "region": "grid_b2",
-    "text": "AIS report: MMSI 412102809, vessel MV LARCH, position Grid B2, heading 120 degrees, speed 10.4 knots.",
-    "reliability": 0.82,
-    "confidence": 0.81,
-    "entities": [
-      "MV LARCH",
-      "412102809"
-    ],
-    "position": null,
-    "heading": 120.0,
-    "speed": 10.4,
-    "object_type": "vessel",
-    "classification": null,
-    "frequency_mhz": null,
-    "mmsi": "412102809",
-    "vessel_name": "MV LARCH",
-    "track_id": null,
-    "is_absence_report": false,
-    "payload": {},
-    "tags": [
-      "filler"
-    ]
-  },
-  {
     "record_id": "MR-3113",
     "modality": "mission_report",
     "sensor": "watch_officer",
@@ -2092,31 +1951,6 @@
     "vessel_name": null,
     "track_id": null,
     "is_absence_report": false,
-    "payload": {},
-    "tags": [
-      "filler"
-    ]
-  },
-  {
-    "record_id": "RADAR-3009",
-    "modality": "surface_radar",
-    "sensor": "radar_02",
-    "timestamp": "2026-08-22T04:56:00Z",
-    "region": "grid_b1",
-    "text": "Routine surface sweep of Grid B1 at 0456Z: no new contacts held.",
-    "reliability": 0.9,
-    "confidence": 0.84,
-    "entities": [],
-    "position": null,
-    "heading": null,
-    "speed": null,
-    "object_type": null,
-    "classification": null,
-    "frequency_mhz": null,
-    "mmsi": null,
-    "vessel_name": null,
-    "track_id": null,
-    "is_absence_report": true,
     "payload": {},
     "tags": [
       "filler"
@@ -2386,33 +2220,6 @@
     "tags": [
       "presence",
       "agreement"
-    ]
-  },
-  {
-    "record_id": "RADAR-230",
-    "modality": "surface_radar",
-    "sensor": "radar_02",
-    "timestamp": "2026-08-22T05:05:00Z",
-    "region": "grid_b1",
-    "text": "Surface track T-51 held in Grid B1: heading 090 degrees, speed 8.2 knots, large radar cross-section.",
-    "reliability": 0.9,
-    "confidence": 0.9,
-    "entities": [
-      "T-51"
-    ],
-    "position": null,
-    "heading": 90.0,
-    "speed": 8.2,
-    "object_type": "vessel",
-    "classification": null,
-    "frequency_mhz": null,
-    "mmsi": null,
-    "vessel_name": null,
-    "track_id": "T-51",
-    "is_absence_report": false,
-    "payload": {},
-    "tags": [
-      "presence"
     ]
   },
   {

@@ -111,6 +111,12 @@ def extract_time_range(question: str) -> tuple[TimeRange | None, str]:
             f"relative window: last {amount} {unit}",
         )
 
+    if re.search(r"(right now|currently|at this time|at the moment|at present)", q):
+        return (
+            TimeRange(start=world.MISSION_NOW - timedelta(minutes=20), end=world.MISSION_NOW),
+            "relative window: current picture (last 20 min)",
+        )
+
     clocks = _parse_clock(question)
     if len(clocks) >= 2:
         start = world.t(*clocks[0])
@@ -236,6 +242,9 @@ def build_subqueries(plan: QueryPlan) -> list[SubQuery]:
         world.REGIONS[plan.region].name if plan.region in world.REGIONS else (plan.region or "the area of interest")
     )
     window = plan.time_range.label() if plan.time_range else "the mission window"
+    # Named identifiers must reach the lexical retriever, not only the reranker: BM25
+    # cannot match "T-42" if the sub-query text never mentions it.
+    entity_hint = (" " + " ".join(plan.entities)) if plan.entities else ""
     entities = plan.entities
     hard = plan.hard_modalities
     subqueries: list[SubQuery] = []
@@ -269,13 +278,13 @@ def build_subqueries(plan: QueryPlan) -> list[SubQuery]:
         ):
             add(
                 SubQueryType.RETRIEVE_PRESENCE,
-                f"{phrase} in {region_name} during {window}",
+                f"{phrase}{entity_hint} in {region_name} during {window}",
                 [modality],
                 f"independent {modality.value} channel",
             )
         add(
             SubQueryType.RETRIEVE_CONTEXT,
-            f"mission report analyst assessment for {region_name} during {window}",
+            f"mission report analyst assessment{entity_hint} for {region_name} during {window}",
             [Modality.MISSION_REPORT, Modality.IMAGERY],
             "narrative context and imagery",
         )
@@ -295,7 +304,7 @@ def build_subqueries(plan: QueryPlan) -> list[SubQuery]:
         )
         add(
             SubQueryType.RETRIEVE_TRACK,
-            f"surface radar track held at {early} heading speed",
+            f"surface radar track held at {early} heading speed{entity_hint}",
             [Modality.SURFACE_RADAR],
             "the earlier track (hop 1)",
             time_range=early_tr,
@@ -337,19 +346,19 @@ def build_subqueries(plan: QueryPlan) -> list[SubQuery]:
     else:  # IDENTITY_RESOLUTION / EXPLAIN_DISAGREEMENT
         add(
             SubQueryType.RETRIEVE_CURRENT_DETECTION,
-            f"contact detected in {region_name} during {window} heading speed classification",
+            f"contact{entity_hint} detected in {region_name} during {window} heading speed classification",
             [Modality.SURFACE_RADAR, Modality.EO_IR],
             "kinematic picture",
         )
         add(
             SubQueryType.RETRIEVE_IDENTITY,
-            f"vessel identity AIS MMSI name in {region_name} during {window}",
+            f"vessel identity AIS MMSI name{entity_hint} in {region_name} during {window}",
             [Modality.AIS],
             "cooperative identity",
         )
         add(
             SubQueryType.RETRIEVE_CONTEXT,
-            f"mission report identification assessment {region_name} {window}",
+            f"mission report identification assessment{entity_hint} {region_name} {window}",
             [Modality.MISSION_REPORT, Modality.IMAGERY],
             "analyst identification",
         )

@@ -1,8 +1,8 @@
 {
   "dataset_version": "mission-synth-v1.0.0",
-  "records": 151,
+  "records": 144,
   "coverage_entries": 117,
-  "regions": 13,
+  "regions": 14,
   "sensors": 10,
   "mission_start": "2026-08-22T03:30:00+00:00",
   "mission_end": "2026-08-22T06:00:00+00:00",
@@ -42,13 +42,13 @@
     ]
   },
   "modality_counts": {
-    "ais": 37,
+    "ais": 32,
     "eo_ir": 15,
     "imagery": 10,
     "mission_report": 20,
     "rf": 18,
     "standing_order": 5,
-    "surface_radar": 41,
+    "surface_radar": 39,
     "terrain": 5
   }
 }

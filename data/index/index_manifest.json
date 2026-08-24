@@ -3,11 +3,11 @@
   "embedding_dim": 384,
   "dense_backend": "faiss.IndexFlatIP",
   "sparse_backend": "rank_bm25.BM25Okapi",
-  "documents": 151,
+  "documents": 144,
   "rrf_k": 60,
   "top_k_dense": 25,
   "top_k_sparse": 25,
   "rerank": true,
-  "built_at": "2026-08-24T18:04:31Z",
+  "built_at": "2026-08-24T18:34:55Z",
   "dataset_version": "mission-synth-v1.0.0"
 }
