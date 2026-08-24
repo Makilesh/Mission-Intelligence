@@ -112,9 +112,10 @@ def main() -> None:
         start_h = col_a.slider("From (HH:MM)", 3.5, 6.0, 4.0, 0.05)
         end_h = col_b.slider("To (HH:MM)", 3.5, 6.0, 4.35, 0.05)
         if end_h > start_h:
+            midnight = world.MISSION_START.replace(hour=0, minute=0, second=0, microsecond=0)
             win = TimeRange(
-                start=world.MISSION_START.replace(hour=3, minute=0) + timedelta(hours=start_h),
-                end=world.MISSION_START.replace(hour=3, minute=0) + timedelta(hours=end_h),
+                start=midnight + timedelta(hours=start_h),
+                end=midnight + timedelta(hours=end_h),
             )
             report = ledger.check(region, win)
             st.write(f"`{report.human_summary()}`")
