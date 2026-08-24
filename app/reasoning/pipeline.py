@@ -497,6 +497,9 @@ def _select_for_display(
         push([e for e in bundle.evidence if e.attributes.get("contradiction_ids")])
         push(bundle.presence)
     else:
+        # Ledger-derived gap evidence leads: for an UNKNOWN answer the coverage gap *is*
+        # the finding, and it should be the first thing the operator reads.
+        push([e for e in bundle.unobserved if e.attributes.get("kind")])
         push(bundle.unobserved)
         push(bundle.partial)
     push([e for e in bundle.operational if e.state.value != "STALE"])

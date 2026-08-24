@@ -106,12 +106,15 @@ class EvidenceBundle:
     def unobserved(self) -> list[Evidence]:
         # Region relevance is enforced here too: a negative report from a *different*
         # region says nothing about the queried one, however similar its wording.
-        return [
+        items = [
             e
             for e in self.evidence
             if base_state(e) is EvidenceState.UNOBSERVED
             and e.attributes.get("region_relevant", True)
         ]
+        # Ledger-derived gaps first: for an UNKNOWN answer the gap is the finding, and it
+        # is what should be cited before any rejected negative report.
+        return sorted(items, key=lambda e: 0 if e.attributes.get("kind") else 1)
 
     @property
     def stale(self) -> list[Evidence]:

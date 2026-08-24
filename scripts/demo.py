@@ -21,22 +21,22 @@ from app.reasoning.pipeline import answer_question  # noqa: E402
 from app.retrieval.hybrid import get_retriever  # noqa: E402
 
 DEMOS = [
-    ("Demo 1 — Observed absence",
+    ("Demo 1 - Observed absence",
      "Were there any surface contacts in Sector Alpha between 04:00 and 04:20?",
      "No contacts observed; coverage ~95%; high confidence."),
-    ("Demo 2 — Unknown (blind window)",
+    ("Demo 2 - Unknown (blind window)",
      "Were there any contacts in Sector Alpha between 04:07 and 04:11?",
      "Cannot determine; insufficient coverage; must NOT say 'no contacts detected'."),
-    ("Demo 3 — Contradiction",
+    ("Demo 3 - Contradiction",
      "What vessel was detected near Grid B7?",
      "Sources disagree (AIS V-17 vs mission report V-21); not reconciled."),
-    ("Demo 4 — Multi-hop association",
+    ("Demo 4 - Multi-hop association",
      "Is the vessel detected at 05:20 the same vessel tracked at 04:00?",
      "Kinematic + custody + identity reasoning over the retrieved chain."),
 ]
 
 DEMO5 = (
-    "Demo 5 — Sensor dropout",
+    "Demo 5 - Sensor dropout",
     "Were there any surface contacts in Sector Alpha between 04:00 and 04:20?",
     "Same question, radar_01 disabled: coverage down, confidence down, answer more uncertain.",
 )
