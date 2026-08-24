@@ -33,6 +33,12 @@ class SentenceTransformerEmbedder:
         os.environ.setdefault("HF_HUB_OFFLINE", "1")
         os.environ.setdefault("TRANSFORMERS_OFFLINE", "1")
         os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
+        os.environ.setdefault("TRANSFORMERS_VERBOSITY", "error")
+        os.environ.setdefault("HF_HUB_DISABLE_PROGRESS_BARS", "1")
+        from transformers.utils import logging as hf_logging  # local import: heavy
+
+        hf_logging.set_verbosity_error()
+        hf_logging.disable_progress_bar()
         from sentence_transformers import SentenceTransformer  # local import: heavy
 
         self._model = SentenceTransformer(model_name)
