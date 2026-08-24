@@ -23,6 +23,17 @@ from app.models.schemas import (
 from app.retrieval.corpus import Corpus
 
 
+def base_state(evidence: Evidence) -> EvidenceState:
+    """The epistemic state before CONTRADICTION was layered on top of it."""
+    raw = evidence.attributes.get("base_state")
+    if raw:
+        try:
+            return EvidenceState(raw)
+        except ValueError:
+            pass
+    return evidence.state
+
+
 @dataclass
 class EvidenceBundle:
     evidence: list[Evidence] = field(default_factory=list)
@@ -31,6 +42,10 @@ class EvidenceBundle:
     # -------------------------------------------------------------------- selectors ----
     def by_state(self, *states: EvidenceState) -> list[Evidence]:
         return [e for e in self.evidence if e.state in states]
+
+    @property
+    def contradictory(self) -> list[Evidence]:
+        return [e for e in self.evidence if e.state is EvidenceState.CONTRADICTION]
 
     @property
     def operational(self) -> list[Evidence]:
@@ -48,21 +63,21 @@ class EvidenceBundle:
         return [
             e
             for e in self.operational
-            if e.state is EvidenceState.PRESENCE
+            if base_state(e) is EvidenceState.PRESENCE
             and e.source not in (Modality.STANDING_ORDER, Modality.TERRAIN)
         ]
 
     @property
     def absence(self) -> list[Evidence]:
-        return [e for e in self.operational if e.state is EvidenceState.OBSERVED_ABSENCE]
+        return [e for e in self.operational if base_state(e) is EvidenceState.OBSERVED_ABSENCE]
 
     @property
     def partial(self) -> list[Evidence]:
-        return [e for e in self.operational if e.state is EvidenceState.PARTIAL_COVERAGE]
+        return [e for e in self.operational if base_state(e) is EvidenceState.PARTIAL_COVERAGE]
 
     @property
     def unobserved(self) -> list[Evidence]:
-        return [e for e in self.evidence if e.state is EvidenceState.UNOBSERVED]
+        return [e for e in self.evidence if base_state(e) is EvidenceState.UNOBSERVED]
 
     @property
     def stale(self) -> list[Evidence]:
