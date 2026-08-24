@@ -146,10 +146,18 @@ class CoverageLedger:
                 )
         return CoverageLedger(out)
 
-    def with_coverage_loss(self, fraction_kept: float, region: str | None = None) -> "CoverageLedger":
-        """Artificially reduce coverage to `fraction_kept` of each entry's duration.
+    def with_coverage_loss(
+        self,
+        fraction_kept: float,
+        region: str | None = None,
+        window: TimeRange | None = None,
+    ) -> "CoverageLedger":
+        """Artificially reduce observation coverage.
 
-        Used by the confidence-calibration sweep (100/80/60/40/20 %).
+        With a `window`, the cut is made *inside that window* so the resulting coverage
+        fraction over it is proportional to `fraction_kept` - which is what the confidence
+        calibration sweep (100/80/60/40/20 %) needs. Without one, each entry is truncated
+        to `fraction_kept` of its own duration.
         """
         fraction_kept = max(0.0, min(1.0, fraction_kept))
         targets: set[str] | None = set(atomic_regions(region)) if region else None
@@ -161,9 +169,20 @@ class CoverageLedger:
             if e.coverage_status in (CoverageStatus.NOT_OBSERVED, CoverageStatus.UNKNOWN):
                 out.append(e)
                 continue
-            total = (e.time_end - e.time_start).total_seconds()
-            keep = total * fraction_kept
-            cut = e.time_start + timedelta(seconds=keep)
+            if window is not None:
+                if not e.time_range.overlaps(window):
+                    out.append(e)
+                    continue
+                cut = window.start + timedelta(
+                    seconds=window.duration_seconds * fraction_kept
+                )
+                cut = max(e.time_start, min(cut, e.time_end))
+                total = (e.time_end - e.time_start).total_seconds()
+                keep = (cut - e.time_start).total_seconds()
+            else:
+                total = (e.time_end - e.time_start).total_seconds()
+                keep = total * fraction_kept
+                cut = e.time_start + timedelta(seconds=keep)
             if keep > 0:
                 out.append(e.model_copy(update={"time_end": cut}))
             if keep < total:

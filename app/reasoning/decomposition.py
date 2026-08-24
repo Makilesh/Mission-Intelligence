@@ -298,12 +298,14 @@ def build_subqueries(plan: QueryPlan) -> list[SubQuery]:
             time_range=None,
             region=None,
         )
+        # Identity is anchored on the *later* contact: that is the one whose identity the
+        # operator is really asking about.
         add(
             SubQueryType.RETRIEVE_IDENTITY,
-            "AIS identity MMSI vessel name mission report identification",
+            f"AIS identity MMSI vessel name identification of the contact at {late}",
             [Modality.AIS, Modality.MISSION_REPORT],
             "identity resolution (hop 4)",
-            time_range=None,
+            time_range=late_tr,
             region=None,
         )
         add(
