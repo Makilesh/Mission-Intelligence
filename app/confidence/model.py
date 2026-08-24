@@ -135,12 +135,54 @@ def calculate_confidence(
     )
 
 
+def in_scope(
+    contradiction: Contradiction,
+    coverage: CoverageReport | None,
+    region: str | None,
+    entities: list[str] | None = None,
+) -> bool:
+    """A disagreement only defines the answer if it happened *where and when we asked*.
+
+    Without this, the Grid B7 identity dispute at 05:20 would hijack every question about
+    Grid B7 at any other time - including the 04:07-04:11 blind-window question.
+    """
+    from datetime import timedelta
+
+    from app.dataset import world
+
+    if entities:
+        # A question about T-42 is not answered "contradiction" because two other vessels
+        # disagreed nearby.
+        haystack = " ".join(
+            [str(contradiction.entity or "")]
+            + [str(c.value) for c in contradiction.claims]
+        ).lower()
+        if not any(e.lower() in haystack for e in entities):
+            return False
+
+    target_region = region or (coverage.region if coverage else None)
+    if target_region and not (
+        world.region_matches(contradiction.region, target_region)
+        or world.region_matches(target_region, contradiction.region)
+    ):
+        return False
+    if coverage is None:
+        return True
+    slack = timedelta(minutes=10)
+    return (
+        contradiction.time_range.start <= coverage.time_range.end + slack
+        and contradiction.time_range.end >= coverage.time_range.start - slack
+    )
+
+
 def decide_state(
     bundle: EvidenceBundle,
     coverage: CoverageReport | None,
     contradictions: list[Contradiction],
     contradiction_severity: float,
     intent_is_absence: bool,
+    region: str | None = None,
+    entities: list[str] | None = None,
 ) -> tuple[AnswerState, list[str]]:
     """Deterministic answer-state decision. The LLM does not get a vote.
 
@@ -153,12 +195,21 @@ def decide_state(
     reasons: list[str] = []
     presence = bundle.presence
     absence_supported = bool(coverage and coverage.absence_claim_supported)
+    in_scope_contradictions = [
+        c for c in contradictions if in_scope(c, coverage, region, entities)
+    ]
 
-    if contradictions and contradiction_severity >= 0.55:
+    if in_scope_contradictions and contradiction_severity >= 0.55:
         reasons.append(
-            f"contradiction severity {contradiction_severity:.2f} exceeds the reporting threshold"
+            f"contradiction severity {contradiction_severity:.2f} exceeds the reporting "
+            "threshold and the disagreement falls inside the queried region and window"
         )
         return AnswerState.CONTRADICTION, reasons
+    if contradictions and not in_scope_contradictions:
+        reasons.append(
+            f"{len(contradictions)} contradiction(s) were detected outside the queried "
+            "region/window; reported as context but not allowed to define the answer"
+        )
 
     if presence:
         reasons.append(

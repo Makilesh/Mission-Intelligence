@@ -1145,9 +1145,48 @@ def _filler(rng: random.Random) -> list[SourceRecord]:
     return out
 
 
-def build_records() -> list[SourceRecord]:
+def _sensor_could_have_seen_it(
+    record: SourceRecord, coverage: list[CoverageEntry]
+) -> bool:
+    """A sensing record may only exist where its own modality had positive coverage.
+
+    Without this the dataset would contradict itself: an AIS report timestamped inside the
+    AIS receiver reset, or a radar track during the radar-down handover. Those inconsistencies
+    are invisible to a normal RAG pipeline but fatal to a coverage-aware one, because the
+    ledger and the corpus would be telling different stories about the same instant.
+    """
+    if record.modality not in {
+        Modality.SURFACE_RADAR,
+        Modality.AIS,
+        Modality.EO_IR,
+        Modality.RF,
+        Modality.IMAGERY,
+    }:
+        return True  # documents are not sensor observations
+    if "trap" in record.tags:
+        # The planted traps are *deliberately* unverifiable: a sweep of a region the ledger
+        # has never heard of, or a report from before the mission clock. Their whole job is
+        # to look convincing while having no coverage behind them.
+        return True
+    grids = set(atomic_regions(record.region))
+    for entry in coverage:
+        if entry.modality is not record.modality or entry.region not in grids:
+            continue
+        if entry.coverage_status in (CoverageStatus.NOT_OBSERVED, CoverageStatus.UNKNOWN):
+            continue
+        if entry.time_start <= record.timestamp <= entry.time_end:
+            return True
+    return False
+
+
+def build_records(coverage: list[CoverageEntry] | None = None) -> list[SourceRecord]:
     rng = random.Random(RANDOM_SEED)
-    records = _handcrafted() + _filler(rng)
+    coverage = coverage if coverage is not None else build_coverage_entries()
+    records = [
+        r
+        for r in (_handcrafted() + _filler(rng))
+        if _sensor_could_have_seen_it(r, coverage)
+    ]
     seen: set[str] = set()
     unique: list[SourceRecord] = []
     for r in records:
@@ -1169,8 +1208,8 @@ def _dump(path: Path, payload: list[dict]) -> None:
 
 def generate(write: bool = True) -> tuple[list[SourceRecord], list[CoverageEntry]]:
     ensure_dirs()
-    records = build_records()
     coverage = build_coverage_entries()
+    records = build_records(coverage)
     if write:
         _dump(SYNTHETIC_DIR / "records.json", [r.model_dump(mode="json") for r in records])
         _dump(COVERAGE_DIR / "ledger.json", [c.model_dump(mode="json") for c in coverage])
