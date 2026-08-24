@@ -16,21 +16,31 @@ the final synthesis, and even that is optional.
 from __future__ import annotations
 
 import asyncio
+from datetime import timedelta
 from typing import Any
 
-from app.confidence.model import calculate_confidence, decide_state, supporting_evidence
+from app.confidence.model import (
+    calculate_confidence,
+    decide_state,
+    in_scope,
+    supporting_evidence,
+)
 from app.contradiction.engine import aggregate_severity, detect, mark_evidence
 from app.coverage.ledger import CoverageLedger, get_ledger
 from app.dataset import world
 from app.evidence.aggregator import EvidenceBundle, aggregate
+from app.evidence.classifier import classify
 from app.models.schemas import (
     AnswerState,
     CoverageReport,
     CoverageSummary,
     Evidence,
     MissionAnswer,
+    Modality,
     QueryIntent,
     QueryPlan,
+    SubQuery,
+    SubQueryType,
     TimeRange,
 )
 from app.observability import Tracer
@@ -228,14 +238,76 @@ async def answer_question(
             }
         )
 
+    # ---- 4b. multi-hop expansion -------------------------------------------------------
+    # A genuine multi-hop question cannot be answered by one round of retrieval: hop 4
+    # (identity) depends on the *result* of hop 2 (which contact we are talking about).
+    # So for association questions we pick the later contact first, then go back to the
+    # index for identity claims co-located with it.
+    if plan.intent is QueryIntent.ASSOCIATION:
+        with tracer.stage("multihop_expansion") as detail:
+            pre = assess(bundle, ledger, plan.comparison_targets)
+            added: list[str] = []
+            if pre.later is not None:
+                anchor = pre.later
+                expand = SubQuery(
+                    subquery_id="sq-expand",
+                    type=SubQueryType.RETRIEVE_IDENTITY,
+                    text=(
+                        f"identity vessel name MMSI hull identification of the contact in "
+                        f"{anchor.region} at {anchor.time_range.start.strftime('%H:%M')}"
+                    ),
+                    region=anchor.region,
+                    time_range=TimeRange(
+                        start=anchor.time_range.start - timedelta(minutes=10),
+                        end=anchor.time_range.end + timedelta(minutes=10),
+                    ),
+                    preferred_modalities=[
+                        Modality.AIS,
+                        Modality.MISSION_REPORT,
+                        Modality.EO_IR,
+                        Modality.IMAGERY,
+                    ],
+                )
+                known = bundle.ids()
+                for doc in await retriever.asearch_subquery(expand, k=8):
+                    if doc.record_id in known:
+                        continue
+                    record = corpus.get(doc.record_id)
+                    if record is None:
+                        continue
+                    bundle.evidence.append(
+                        classify(
+                            record=record,
+                            ledger=ledger,
+                            window=plan.time_range,
+                            query_region=plan.region,
+                            retrieval_score=doc.score,
+                        )
+                    )
+                    added.append(doc.record_id)
+            detail.update(
+                {
+                    "anchor": pre.later.evidence_id if pre.later else None,
+                    "added_evidence": added,
+                }
+            )
+
     # ---- 5. contradiction detection ---------------------------------------------------
     with tracer.stage("contradiction_detection") as detail:
-        contradictions = detect(bundle.evidence)
-        mark_evidence(bundle.evidence, contradictions)
+        all_contradictions = detect(bundle.evidence)
+        mark_evidence(bundle.evidence, all_contradictions)
+        # A real disagreement elsewhere in the mission is not an answer to *this* question.
+        # It is still surfaced, but as "related", and it does not drive the state or the
+        # confidence penalty.
+        contradictions = [
+            c for c in all_contradictions if in_scope(c, coverage, plan.region, plan.entities)
+        ]
+        related = [c for c in all_contradictions if c not in contradictions]
         severity = aggregate_severity(contradictions)
         detail.update(
             {
                 "contradictions": len(contradictions),
+                "related_out_of_scope": len(related),
                 "aggregate_severity": severity,
                 "dimensions": [c.dimension.value for c in contradictions],
             }
@@ -293,7 +365,8 @@ async def answer_question(
     # ---- 7. synthesis ------------------------------------------------------------------
     gaps = _gap_strings(coverage)
     claim_support = supporting_evidence(bundle, state)
-    shown: list[Evidence] = _select_for_display(bundle, state)
+    pinned = set(association_payload.get("supporting_evidence") or []) if association_payload else set()
+    shown: list[Evidence] = _select_for_display(bundle, state, pinned=pinned)
     with tracer.stage("llm_synthesis") as detail:
         result = llm.synthesise(
             plan=plan,
@@ -365,6 +438,19 @@ async def answer_question(
         plan=plan,
         trace=trace if include_trace else None,
         meta={
+            "related_contradictions": [
+                {
+                    "id": c.contradiction_id,
+                    "dimension": c.dimension.value,
+                    "severity": c.severity,
+                    "severity_label": c.severity_label,
+                    "reason": c.reason,
+                    "region": c.region,
+                    "time_range": c.time_range.label(),
+                    "note": "outside the queried region/window; not used to answer",
+                }
+                for c in related
+            ],
             "dataset_version": retriever.build_info.get("dataset_version", ""),
             "documents": retriever.build_info["documents"],
             "embedding_model": retriever.build_info["embedding_model"],
@@ -383,7 +469,12 @@ async def answer_question(
     return answer
 
 
-def _select_for_display(bundle: EvidenceBundle, state: AnswerState, limit: int = 12) -> list[Evidence]:
+def _select_for_display(
+    bundle: EvidenceBundle,
+    state: AnswerState,
+    limit: int = 12,
+    pinned: set[str] | None = None,
+) -> list[Evidence]:
     """Evidence shown to the operator and to the LLM: claim-supporting first, then context."""
     ordered: list[Evidence] = []
     seen: set[str] = set()
@@ -395,6 +486,9 @@ def _select_for_display(bundle: EvidenceBundle, state: AnswerState, limit: int =
             seen.add(e.evidence_id)
             ordered.append(e)
 
+    if pinned:
+        # Evidence the deterministic analysis explicitly cites is always shown.
+        push([e for e in bundle.evidence if e.evidence_id in pinned])
     if state is AnswerState.PRESENCE:
         push(bundle.presence)
     elif state is AnswerState.OBSERVED_ABSENCE:

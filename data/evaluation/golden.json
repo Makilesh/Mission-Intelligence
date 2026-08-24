@@ -1,7 +1,7 @@
 {
   "query_set_version": "golden-v1.0.0",
   "count": 50,
-  "generated_at": "2026-08-24T18:34:57.019205Z",
+  "generated_at": "2026-08-24T18:42:29.409371Z",
   "questions": [
     {
       "qid": "G01",
@@ -550,8 +550,8 @@
       "expects_contradiction": false,
       "expects_blind_window": false,
       "expected_coverage_band": [
-        0.5,
-        0.95
+        0.0,
+        0.05
       ],
       "relevant_ids": [
         "EO-3081",
@@ -564,7 +564,7 @@
       ],
       "forbidden_ids": [],
       "must_mention_gap": false,
-      "notes": "AIS receiver reset: the AIS channel is blind even though radar is not."
+      "notes": "AIS receiver reset. The question names AIS, so the AIS channel alone decides coverage - and it is blind, even though radar is not."
     },
     {
       "qid": "G17",
