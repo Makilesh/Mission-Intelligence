@@ -1,0 +1,54 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    image: mission-intelligence:latest
+    container_name: mission-api
+    command: uvicorn app.api.main:app --host 0.0.0.0 --port 8000
+    ports:
+      - "8000:8000"
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      LLM_PROVIDER: ${LLM_PROVIDER:-deterministic}
+      DENSE_BACKEND: ${DENSE_BACKEND:-auto}
+      HF_HUB_OFFLINE: "1"
+      TRANSFORMERS_OFFLINE: "1"
+    volumes:
+      # Persist the generated dataset, ledger and evaluation reports on the host.
+      - ./data:/app/data
+      # Reuse a host model cache if one exists; the system still runs without it.
+      - ${HF_CACHE:-./.hf-cache}:/models
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 120s
+
+  ui:
+    image: mission-intelligence:latest
+    container_name: mission-ui
+    depends_on:
+      api:
+        condition: service_started
+    command: >
+      streamlit run ui/streamlit_app.py
+      --server.port=8501
+      --server.address=0.0.0.0
+      --server.headless=true
+    ports:
+      - "8501:8501"
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      LLM_PROVIDER: ${LLM_PROVIDER:-deterministic}
+      DENSE_BACKEND: ${DENSE_BACKEND:-auto}
+      HF_HUB_OFFLINE: "1"
+      TRANSFORMERS_OFFLINE: "1"
+    volumes:
+      - ./data:/app/data
+      - ${HF_CACHE:-./.hf-cache}:/models

@@ -1,0 +1,30 @@
+# Core
+pydantic>=2.7,<3
+fastapi>=0.110
+uvicorn[standard]>=0.29
+python-dotenv>=1.0
+
+# Retrieval
+sentence-transformers>=2.7          # dense encoder (optional at runtime; see note below)
+faiss-cpu>=1.8                      # ANN index (optional; numpy fallback exists)
+rank-bm25>=0.2.2                    # sparse retrieval
+scikit-learn>=1.4                   # TF-IDF + SVD fallback encoder
+numpy>=1.26
+
+# UI + data
+streamlit>=1.33
+pandas>=2.2
+
+# Evaluation / testing
+pytest>=8.0
+httpx>=0.27
+
+# Optional LLM providers (the default provider is offline and needs neither)
+# anthropic>=0.34
+# openai>=1.30
+
+# NOTE ON OFFLINE OPERATION
+# The system runs with no network access and no API key. If the sentence-transformers
+# model is unavailable it falls back to a deterministic TF-IDF+SVD encoder, and if FAISS
+# is unavailable it falls back to exact numpy search. The active backend is recorded in
+# every benchmark report.
