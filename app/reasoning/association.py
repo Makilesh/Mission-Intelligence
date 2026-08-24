@@ -91,6 +91,45 @@ def _nearest(evidence: list[Evidence], anchor: datetime) -> Evidence | None:
     return min(evidence, key=lambda e: abs(e.time_range.start - anchor))
 
 
+def pair_score(earlier: Evidence, later: Evidence) -> float:
+    """How well does this candidate pair hang together as one contact?
+
+    Association is a *search over candidate pairs*, not "whichever record happens to sit
+    closest to the clock". Picking by timestamp alone would associate the first vessel that
+    happened to report at 05:20, regardless of whether it could possibly be the same hull.
+    """
+    h1, h2 = float(earlier.attributes["heading"]), float(later.attributes["heading"])
+    s1, s2 = float(earlier.attributes["speed"]), float(later.attributes["speed"])
+    heading_score = 1.0 - _angular_difference(h1, h2) / 180.0
+    speed_score = 1.0 - min(1.0, abs(s1 - s2) / max(s1, s2, 1e-6))
+
+    transit_score = 0.5
+    p1, p2 = _position(earlier), _position(later)
+    elapsed_h = (later.time_range.start - earlier.time_range.start).total_seconds() / 3600.0
+    if p1 and p2 and elapsed_h > 0:
+        required = (math.dist(p1, p2) * NM_PER_DEGREE) / elapsed_h
+        mean_reported = (s1 + s2) / 2.0
+        transit_score = 1.0 if required <= mean_reported * 1.35 else max(
+            0.0, 1.0 - (required - mean_reported * 1.35) / max(mean_reported, 1e-6)
+        )
+
+    identity_score = 0.5
+    for key in ("track_id", "vessel_name", "mmsi"):
+        va, vb = earlier.attributes.get(key), later.attributes.get(key)
+        if va and vb:
+            identity_score = 1.0 if str(va).upper() == str(vb).upper() else 0.2
+            break
+
+    relevance = (earlier.retrieval_score + later.retrieval_score) / 2.0
+    return (
+        0.34 * heading_score
+        + 0.26 * speed_score
+        + 0.25 * transit_score
+        + 0.10 * identity_score
+        + 0.05 * min(1.0, relevance / 2.0)
+    )
+
+
 def custody_gaps(
     ledger: CoverageLedger, regions: list[str], window: TimeRange
 ) -> list[str]:
@@ -129,13 +168,23 @@ def assess(
     early_pool = [e for e in candidates if abs(e.time_range.start - t_early) <= timedelta(minutes=12)]
     late_pool = [e for e in candidates if abs(e.time_range.start - t_late) <= timedelta(minutes=12)]
 
-    earlier = _nearest(early_pool, t_early)
-    later = _nearest(late_pool, t_late)
-    if earlier is None or later is None:
+    if not early_pool or not late_pool:
         result.narrative = (
             "Could not retrieve a kinematic report near "
-            f"{'the earlier time' if earlier is None else 'the later time'}."
+            f"{'the earlier time' if not early_pool else 'the later time'}."
         )
+        return result
+
+    earlier, later, best = None, None, -1.0
+    for a in early_pool:
+        for b in late_pool:
+            if a.evidence_id == b.evidence_id:
+                continue
+            score = pair_score(a, b)
+            if score > best:
+                earlier, later, best = a, b, score
+    if earlier is None or later is None:
+        result.narrative = "No candidate pair could be formed from the retrieved evidence."
         return result
 
     result.earlier, result.later = earlier, later
@@ -166,18 +215,18 @@ def assess(
         name = e.attributes.get("vessel_name") or e.attributes.get("track_id")
         if name and e.attributes.get("region_relevant", True):
             result.identity_claims.setdefault(str(name), e.evidence_id)
+    # Identity is only "contested" among reports co-located with the later detection.
     named = {
         str(e.attributes.get("vessel_name"))
         for e in bundle.evidence
-        if e.attributes.get("vessel_name") and abs(e.time_range.start - t_late) <= timedelta(minutes=10)
+        if e.attributes.get("vessel_name")
+        and abs(e.time_range.start - later.time_range.start) <= timedelta(minutes=10)
+        and (e.region == later.region or world.region_matches(e.region, later.region))
     }
     result.identity_conflict = len(named) > 1
 
     # --- hop 5: custody ------------------------------------------------------------------
-    corridor = sorted(
-        {earlier.region, later.region}
-        | {r for r in (world.parent_of(earlier.region), world.parent_of(later.region)) if r}
-    )
+    corridor = sorted({earlier.region, later.region})
     result.custody_gaps = custody_gaps(
         ledger, corridor, TimeRange(start=earlier.time_range.start, end=later.time_range.start)
     )
