@@ -1,0 +1,207 @@
+[
+  {
+    "injection": "sensor_dropout",
+    "description": "radar_01 offline 04:00-04:20Z over its whole footprint",
+    "expectation": "coverage decreases, confidence decreases, an absence claim becomes UNKNOWN",
+    "question": "Were there any surface contacts in Sector Alpha between 04:00 and 04:20?",
+    "before": {
+      "state": "OBSERVED_ABSENCE",
+      "confidence": 0.8445,
+      "coverage_fraction": 0.95,
+      "contradictions": [],
+      "gaps": 1,
+      "claim_evidence": [
+        "RADAR-106",
+        "MR-001",
+        "RADAR-105",
+        "RADAR-103",
+        "RADAR-102"
+      ]
+    },
+    "after": {
+      "state": "UNKNOWN",
+      "confidence": 0.45,
+      "coverage_fraction": 0.7125,
+      "contradictions": [],
+      "gaps": 2,
+      "claim_evidence": [
+        "RADAR-106",
+        "RADAR-105",
+        "RADAR-103",
+        "RADAR-102",
+        "RADAR-104"
+      ]
+    },
+    "delta": {
+      "confidence": -0.3945,
+      "coverage_fraction": -0.2375,
+      "state_changed": true
+    }
+  },
+  {
+    "injection": "stale_data",
+    "description": "a previous-mission sweep report worded exactly like the current ones",
+    "expectation": "classified STALE, excluded from the claim, recency penalty applied",
+    "question": "Were there any surface contacts in Sector Alpha between 04:00 and 04:20?",
+    "before": {
+      "state": "OBSERVED_ABSENCE",
+      "confidence": 0.8445,
+      "coverage_fraction": 0.95,
+      "contradictions": [],
+      "gaps": 1,
+      "claim_evidence": [
+        "RADAR-106",
+        "MR-001",
+        "RADAR-105",
+        "RADAR-103",
+        "RADAR-102"
+      ]
+    },
+    "after": {
+      "state": "OBSERVED_ABSENCE",
+      "confidence": 0.8407,
+      "coverage_fraction": 0.95,
+      "contradictions": [],
+      "gaps": 1,
+      "claim_evidence": [
+        "RADAR-106",
+        "MR-001",
+        "RADAR-105",
+        "RADAR-103",
+        "RADAR-102"
+      ]
+    },
+    "delta": {
+      "confidence": -0.0038,
+      "coverage_fraction": 0.0,
+      "state_changed": false
+    }
+  },
+  {
+    "injection": "false_contradiction",
+    "description": "two unreliable sources disagree about a contact in Grid A1",
+    "expectation": "contradiction detected with LOW severity (weakest source is unreliable)",
+    "question": "What contacts were observed in Grid A1 between 05:20 and 05:30?",
+    "before": {
+      "state": "PRESENCE",
+      "confidence": 0.6719,
+      "coverage_fraction": 1.0,
+      "contradictions": [],
+      "gaps": 0,
+      "claim_evidence": [
+        "RF-3101"
+      ]
+    },
+    "after": {
+      "state": "PRESENCE",
+      "confidence": 0.672,
+      "coverage_fraction": 1.0,
+      "contradictions": [
+        {
+          "dimension": "identity",
+          "severity": 0.105,
+          "label": "low"
+        },
+        {
+          "dimension": "heading",
+          "severity": 0.0942,
+          "label": "low"
+        }
+      ],
+      "gaps": 0,
+      "claim_evidence": [
+        "RF-3101",
+        "INJ-FALSE-B",
+        "INJ-FALSE-A"
+      ]
+    },
+    "delta": {
+      "confidence": 0.0001,
+      "coverage_fraction": 0.0,
+      "state_changed": false
+    }
+  },
+  {
+    "injection": "true_contradiction",
+    "description": "radar and AIS disagree about a contact in Grid A2, both reliable",
+    "expectation": "contradiction detected with HIGH severity on heading and speed",
+    "question": "What contacts were observed in Grid A2 between 05:20 and 05:30?",
+    "before": {
+      "state": "PRESENCE",
+      "confidence": 0.7294,
+      "coverage_fraction": 1.0,
+      "contradictions": [],
+      "gaps": 0,
+      "claim_evidence": [
+        "RF-3096",
+        "NOTE-701"
+      ]
+    },
+    "after": {
+      "state": "CONTRADICTION",
+      "confidence": 0.4307,
+      "coverage_fraction": 1.0,
+      "contradictions": [
+        {
+          "dimension": "heading",
+          "severity": 0.8037,
+          "label": "high"
+        },
+        {
+          "dimension": "speed",
+          "severity": 0.41,
+          "label": "moderate"
+        }
+      ],
+      "gaps": 0,
+      "claim_evidence": [
+        "INJ-TRUE-A",
+        "INJ-TRUE-B",
+        "NOTE-701"
+      ]
+    },
+    "delta": {
+      "confidence": -0.2987,
+      "coverage_fraction": 0.0,
+      "state_changed": true
+    }
+  },
+  {
+    "injection": "retrieval_poisoning",
+    "description": "near-duplicate records asserting coverage the ledger does not have",
+    "expectation": "records are retrieved but the ledger refuses to confirm coverage, so the answer stays UNKNOWN and no absence is asserted",
+    "question": "Were there any contacts in Sector Alpha between 04:07 and 04:11?",
+    "before": {
+      "state": "UNKNOWN",
+      "confidence": 0.45,
+      "coverage_fraction": 0.75,
+      "contradictions": [],
+      "gaps": 1,
+      "claim_evidence": [
+        "RADAR-3003",
+        "GAP-01",
+        "RADAR-104",
+        "MR-001"
+      ]
+    },
+    "after": {
+      "state": "UNKNOWN",
+      "confidence": 0.45,
+      "coverage_fraction": 0.75,
+      "contradictions": [],
+      "gaps": 1,
+      "claim_evidence": [
+        "GAP-01",
+        "INJ-POISON-05",
+        "INJ-POISON-04",
+        "INJ-POISON-03",
+        "MR-001"
+      ]
+    },
+    "delta": {
+      "confidence": 0.0,
+      "coverage_fraction": 0.0,
+      "state_changed": false
+    }
+  }
+]
