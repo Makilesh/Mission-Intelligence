@@ -194,7 +194,12 @@ def deterministic_answer(
         )
     elif state is AnswerState.PRESENCE:
         modalities = sorted({e.source.value.replace('_', ' ') for e in presence})
-        if plan.intent is QueryIntent.ABSENCE_CHECK:
+        if plan.intent is QueryIntent.ASSOCIATION:
+            parts.append(
+                "Association assessment follows; it is based on kinematic comparison and "
+                "observation custody, not on retrieval score."
+            )
+        elif plan.intent is QueryIntent.ABSENCE_CHECK:
             parts.append(
                 f"No - that conclusion is not supported. {len(presence)} observation(s) in "
                 f"{region_label} during {window}Z report contacts "
@@ -211,8 +216,9 @@ def deterministic_answer(
                 f"Yes - {len(presence)} observation(s) in {region_label} during {window}Z report "
                 f"contacts, corroborated across {', '.join(modalities)}. {_cite(presence)}"
             )
-        detail = presence[0]
-        parts.append(f"Most relevant: {detail.claim} [{detail.evidence_id}]")
+        if plan.intent is not QueryIntent.ASSOCIATION:
+            detail = presence[0]
+            parts.append(f"Most relevant: {detail.claim} [{detail.evidence_id}]")
         parts.append(f"Observation coverage for the queried volume was {pct}.")
     elif state is AnswerState.OBSERVED_ABSENCE:
         parts.append(

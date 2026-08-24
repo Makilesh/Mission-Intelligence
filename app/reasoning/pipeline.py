@@ -18,7 +18,7 @@ from __future__ import annotations
 import asyncio
 from typing import Any
 
-from app.confidence.model import calculate_confidence, decide_state
+from app.confidence.model import calculate_confidence, decide_state, supporting_evidence
 from app.contradiction.engine import aggregate_severity, detect, mark_evidence
 from app.coverage.ledger import CoverageLedger, get_ledger
 from app.dataset import world
@@ -249,6 +249,8 @@ async def answer_question(
             contradictions=contradictions,
             contradiction_severity=severity,
             intent_is_absence=plan.intent is QueryIntent.ABSENCE_CHECK,
+            region=plan.region,
+            entities=plan.entities,
         )
         breakdown = calculate_confidence(
             state=state,
@@ -290,6 +292,7 @@ async def answer_question(
 
     # ---- 7. synthesis ------------------------------------------------------------------
     gaps = _gap_strings(coverage)
+    claim_support = supporting_evidence(bundle, state)
     shown: list[Evidence] = _select_for_display(bundle, state)
     with tracer.stage("llm_synthesis") as detail:
         result = llm.synthesise(
@@ -373,6 +376,7 @@ async def answer_question(
             "reasoning_latency_ms": trace.reasoning_latency_ms,
             "confidence_features": breakdown.explain(),
             "association": association_payload,
+            "claim_evidence_ids": [e.evidence_id for e in claim_support],
         },
     )
     answer.operator_view = _operator_view(answer, coverage)

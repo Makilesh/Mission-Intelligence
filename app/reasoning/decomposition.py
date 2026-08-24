@@ -123,7 +123,11 @@ def extract_time_range(question: str) -> tuple[TimeRange | None, str]:
         if "after" in q or "since" in q:
             return TimeRange(start=anchor, end=world.MISSION_NOW), "open-ended window after anchor"
         if "before" in q or "prior to" in q or "until" in q:
-            return TimeRange(start=world.MISSION_START, end=anchor), "window before anchor"
+            # An anchor earlier than mission start is legitimate - the operator may be
+            # asking about a period the mission never observed. Widen backwards instead of
+            # clamping to the mission clock, so the ledger can honestly answer UNKNOWN.
+            start = min(world.MISSION_START, anchor - timedelta(hours=1))
+            return TimeRange(start=start, end=anchor), "window before anchor"
         return (
             TimeRange(start=anchor - timedelta(minutes=5), end=anchor + timedelta(minutes=5)),
             "point-in-time query widened to +/-5 min",
@@ -155,19 +159,33 @@ def extract_entities(question: str) -> list[str]:
     return unique
 
 
-def extract_modalities(question: str) -> tuple[list[Modality], list[Modality]]:
-    """Return (preferred, hard). `hard` is only populated on an explicit operator restriction."""
+def extract_modalities(question: str) -> tuple[list[Modality], list[Modality], bool]:
+    """Return (preferred, hard, explicit).
+
+    `hard` is only populated on an explicit operator restriction ("using only radar").
+    `explicit` records whether the operator named the sources at all. That flag scopes the
+    final *claim* without ever scoping retrieval: answering "yes, AIS contacts" on the
+    strength of a radar track would be its own kind of fabrication.
+    """
     q = question.lower()
     preferred: list[Modality] = []
     for modality, keywords in MODALITY_KEYWORDS.items():
         if any(re.search(rf"\b{re.escape(kw)}\b", q) for kw in keywords):
             preferred.append(modality)
+    explicit = bool(preferred)
+
+    # "Non-cooperative" vessels are exactly the ones AIS cannot see, so AIS is struck from
+    # the requested sources. This is what drives the Sector Charlie question to UNKNOWN.
+    if re.search(r"\b(non-?cooperative|non-?transmitting|dark vessel|unidentified vessel)\b", q):
+        preferred = [m for m in world.DEFAULT_QUERY_MODALITIES if m is not Modality.AIS]
+        explicit = True
+
     hard: list[Modality] = []
     if re.search(r"\b(only|exclusively|restrict(ed)? to|just)\b", q):
         hard = [m for m in preferred if m in world.MODALITY_ADEQUACY]
     if not preferred:
         preferred = list(world.DEFAULT_QUERY_MODALITIES)
-    return preferred, hard
+    return preferred, hard, explicit
 
 
 def detect_intent(question: str) -> QueryIntent:
@@ -356,7 +374,7 @@ def decompose(question: str) -> QueryPlan:
     time_range, time_note = extract_time_range(question)
     region = extract_region(question)
     entities = extract_entities(question)
-    preferred, hard = extract_modalities(question)
+    preferred, hard, modalities_explicit = extract_modalities(question)
 
     clocks = sorted(set(_parse_clock(question)))
     comparison_targets = [f"{hh:02d}:{mm:02d}" for hh, mm in clocks]
@@ -375,6 +393,7 @@ def decompose(question: str) -> QueryPlan:
         time_range=time_range,
         preferred_modalities=preferred,
         hard_modalities=hard,
+        modalities_explicit=modalities_explicit,
         comparison_targets=comparison_targets,
         requested_relationship="same_vessel" if intent is QueryIntent.ASSOCIATION else None,
         notes=notes,
