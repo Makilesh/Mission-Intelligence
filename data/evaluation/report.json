@@ -1,6 +1,6 @@
 {
   "environment": {
-    "generated_at": "2026-08-24T18:42:46.333722+00:00",
+    "generated_at": "2026-08-24T18:55:24.002434+00:00",
     "dataset_version": "mission-synth-v1.0.0",
     "query_set_version": "golden-v1.0.0",
     "documents": 144,
@@ -72,7 +72,7 @@
       "mrr": 0.7037,
       "mrr_flat_baseline": 0.6747,
       "trap_rate@10": 0.5,
-      "latency_seconds": 3.41
+      "latency_seconds": 3.4
     },
     "per_question": [
       {
@@ -2043,9 +2043,9 @@
       "trap_citation_rate": 0.0,
       "gap_reporting_rate": 1.0,
       "mean_evidence_coverage": 0.7847,
-      "mean_latency_ms": 44.6,
-      "p95_latency_ms": 56.8,
-      "wall_seconds": 2.24,
+      "mean_latency_ms": 45.2,
+      "p95_latency_ms": 55.6,
+      "wall_seconds": 2.27,
       "state_accuracy_by_category": {
         "blind_window": 1.0,
         "contradiction": 1.0,
@@ -2082,7 +2082,7 @@
         "gap_mentioned": true,
         "gap_required": true,
         "ungrounded_citations": [],
-        "latency_ms": 57.37
+        "latency_ms": 57.32
       },
       {
         "qid": "G02",
@@ -2106,7 +2106,7 @@
         "gap_mentioned": false,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 45.1
+        "latency_ms": 43.04
       },
       {
         "qid": "G03",
@@ -2130,7 +2130,7 @@
         "gap_mentioned": false,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 37.8
+        "latency_ms": 42.56
       },
       {
         "qid": "G04",
@@ -2154,7 +2154,7 @@
         "gap_mentioned": false,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 40.2
+        "latency_ms": 45.39
       },
       {
         "qid": "G05",
@@ -2178,7 +2178,7 @@
         "gap_mentioned": false,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 37.79
+        "latency_ms": 37.61
       },
       {
         "qid": "G06",
@@ -2202,7 +2202,7 @@
         "gap_mentioned": false,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 32.8
+        "latency_ms": 36.32
       },
       {
         "qid": "G07",
@@ -2226,7 +2226,7 @@
         "gap_mentioned": true,
         "gap_required": true,
         "ungrounded_citations": [],
-        "latency_ms": 39.63
+        "latency_ms": 41.28
       },
       {
         "qid": "G08",
@@ -2250,7 +2250,7 @@
         "gap_mentioned": true,
         "gap_required": true,
         "ungrounded_citations": [],
-        "latency_ms": 36.99
+        "latency_ms": 38.29
       },
       {
         "qid": "G09",
@@ -2274,7 +2274,7 @@
         "gap_mentioned": true,
         "gap_required": true,
         "ungrounded_citations": [],
-        "latency_ms": 36.87
+        "latency_ms": 42.18
       },
       {
         "qid": "G10",
@@ -2298,7 +2298,7 @@
         "gap_mentioned": true,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 38.87
+        "latency_ms": 48.66
       },
       {
         "qid": "G11",
@@ -2322,7 +2322,7 @@
         "gap_mentioned": true,
         "gap_required": true,
         "ungrounded_citations": [],
-        "latency_ms": 40.7
+        "latency_ms": 48.36
       },
       {
         "qid": "G12",
@@ -2346,7 +2346,7 @@
         "gap_mentioned": true,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 39.23
+        "latency_ms": 42.94
       },
       {
         "qid": "G13",
@@ -2370,7 +2370,7 @@
         "gap_mentioned": true,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 45.76
+        "latency_ms": 52.17
       },
       {
         "qid": "G14",
@@ -2394,7 +2394,7 @@
         "gap_mentioned": true,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 43.55
+        "latency_ms": 49.22
       },
       {
         "qid": "G15",
@@ -2418,7 +2418,7 @@
         "gap_mentioned": true,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 39.36
+        "latency_ms": 43.68
       },
       {
         "qid": "G16",
@@ -2442,7 +2442,7 @@
         "gap_mentioned": true,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 46.75
+        "latency_ms": 45.1
       },
       {
         "qid": "G17",
@@ -2466,7 +2466,7 @@
         "gap_mentioned": true,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 41.06
+        "latency_ms": 42.23
       },
       {
         "qid": "G18",
@@ -2490,7 +2490,7 @@
         "gap_mentioned": true,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 41.45
+        "latency_ms": 44.19
       },
       {
         "qid": "G19",
@@ -2514,7 +2514,7 @@
         "gap_mentioned": false,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 33.29
+        "latency_ms": 36.3
       },
       {
         "qid": "G20",
@@ -2538,7 +2538,7 @@
         "gap_mentioned": false,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 34.28
+        "latency_ms": 40.13
       },
       {
         "qid": "G21",
@@ -2562,7 +2562,7 @@
         "gap_mentioned": false,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 47.95
+        "latency_ms": 41.33
       },
       {
         "qid": "G22",
@@ -2586,7 +2586,7 @@
         "gap_mentioned": false,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 38.64
+        "latency_ms": 45.96
       },
       {
         "qid": "G23",
@@ -2610,7 +2610,7 @@
         "gap_mentioned": true,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 39.67
+        "latency_ms": 42.12
       },
       {
         "qid": "G24",
@@ -2634,7 +2634,7 @@
         "gap_mentioned": true,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 80.79
+        "latency_ms": 86.92
       },
       {
         "qid": "G25",
@@ -2658,7 +2658,7 @@
         "gap_mentioned": true,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 47.18
+        "latency_ms": 47.27
       },
       {
         "qid": "G26",
@@ -2682,7 +2682,7 @@
         "gap_mentioned": true,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 50.6
+        "latency_ms": 44.17
       },
       {
         "qid": "G27",
@@ -2706,7 +2706,7 @@
         "gap_mentioned": true,
         "gap_required": true,
         "ungrounded_citations": [],
-        "latency_ms": 42.84
+        "latency_ms": 44.15
       },
       {
         "qid": "G28",
@@ -2730,7 +2730,7 @@
         "gap_mentioned": true,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 44.12
+        "latency_ms": 41.34
       },
       {
         "qid": "G29",
@@ -2754,7 +2754,7 @@
         "gap_mentioned": true,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 44.51
+        "latency_ms": 42.18
       },
       {
         "qid": "G30",
@@ -2778,7 +2778,7 @@
         "gap_mentioned": true,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 42.16
+        "latency_ms": 40.45
       },
       {
         "qid": "G31",
@@ -2804,7 +2804,7 @@
         "gap_mentioned": true,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 63.56
+        "latency_ms": 61.08
       },
       {
         "qid": "G32",
@@ -2828,7 +2828,7 @@
         "gap_mentioned": true,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 54.84
+        "latency_ms": 40.67
       },
       {
         "qid": "G33",
@@ -2852,7 +2852,7 @@
         "gap_mentioned": true,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 48.39
+        "latency_ms": 45.72
       },
       {
         "qid": "G34",
@@ -2876,7 +2876,7 @@
         "gap_mentioned": true,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 56.78
+        "latency_ms": 55.58
       },
       {
         "qid": "G35",
@@ -2900,7 +2900,7 @@
         "gap_mentioned": true,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 49.65
+        "latency_ms": 48.2
       },
       {
         "qid": "G36",
@@ -2948,7 +2948,7 @@
         "gap_mentioned": true,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 48.85
+        "latency_ms": 45.88
       },
       {
         "qid": "G38",
@@ -2972,7 +2972,7 @@
         "gap_mentioned": true,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 42.22
+        "latency_ms": 43.96
       },
       {
         "qid": "G39",
@@ -2998,7 +2998,7 @@
         "gap_mentioned": false,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 45.28
+        "latency_ms": 43.29
       },
       {
         "qid": "G40",
@@ -3022,7 +3022,7 @@
         "gap_mentioned": true,
         "gap_required": true,
         "ungrounded_citations": [],
-        "latency_ms": 44.66
+        "latency_ms": 42.43
       },
       {
         "qid": "G41",
@@ -3046,7 +3046,7 @@
         "gap_mentioned": true,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 45.64
+        "latency_ms": 43.86
       },
       {
         "qid": "G42",
@@ -3070,7 +3070,7 @@
         "gap_mentioned": true,
         "gap_required": true,
         "ungrounded_citations": [],
-        "latency_ms": 42.53
+        "latency_ms": 43.19
       },
       {
         "qid": "G43",
@@ -3094,7 +3094,7 @@
         "gap_mentioned": true,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 47.47
+        "latency_ms": 46.82
       },
       {
         "qid": "G44",
@@ -3118,7 +3118,7 @@
         "gap_mentioned": true,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 48.8
+        "latency_ms": 46.34
       },
       {
         "qid": "G45",
@@ -3142,7 +3142,7 @@
         "gap_mentioned": true,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 46.83
+        "latency_ms": 42.19
       },
       {
         "qid": "G46",
@@ -3166,7 +3166,7 @@
         "gap_mentioned": true,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 41.76
+        "latency_ms": 43.18
       },
       {
         "qid": "G47",
@@ -3190,7 +3190,7 @@
         "gap_mentioned": true,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 43.39
+        "latency_ms": 43.34
       },
       {
         "qid": "G48",
@@ -3214,7 +3214,7 @@
         "gap_mentioned": true,
         "gap_required": false,
         "ungrounded_citations": [],
-        "latency_ms": 43.38
+        "latency_ms": 43.77
       },
       {
         "qid": "G49",
@@ -3238,7 +3238,7 @@
         "gap_mentioned": true,
         "gap_required": true,
         "ungrounded_citations": [],
-        "latency_ms": 44.37
+        "latency_ms": 42.78
       },
       {
         "qid": "G50",
@@ -3262,7 +3262,7 @@
         "gap_mentioned": true,
         "gap_required": true,
         "ungrounded_citations": [],
-        "latency_ms": 45.11
+        "latency_ms": 44.37
       }
     ]
   },

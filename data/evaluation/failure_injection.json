@@ -25,11 +25,11 @@
       "contradictions": [],
       "gaps": 2,
       "claim_evidence": [
+        "GAP-01",
+        "GAP-02",
         "RADAR-106",
         "RADAR-105",
-        "RADAR-103",
-        "RADAR-102",
-        "RADAR-104"
+        "RADAR-103"
       ]
     },
     "delta": {
@@ -178,8 +178,8 @@
       "contradictions": [],
       "gaps": 1,
       "claim_evidence": [
-        "RADAR-3003",
         "GAP-01",
+        "RADAR-3003",
         "RADAR-104",
         "MR-001"
       ]

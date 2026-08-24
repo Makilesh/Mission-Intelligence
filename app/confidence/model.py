@@ -114,8 +114,11 @@ def calculate_confidence(
 
     unknown_ceiling_applied = False
     if state is AnswerState.UNKNOWN:
-        if confidence > cfg.unknown_ceiling:
-            confidence = cfg.unknown_ceiling
+        # A claim the system cannot substantiate is capped - but it must still *decline*
+        # with coverage. A hard ceiling alone would flatten the curve and make "unknown at
+        # 75% coverage" indistinguishable from "unknown at 5% coverage", which is exactly
+        # the collapse this system exists to prevent.
+        confidence = min(confidence, cfg.unknown_ceiling) * (0.5 + 0.5 * covered)
         unknown_ceiling_applied = True
 
     confidence = max(0.02, min(0.99, confidence))
